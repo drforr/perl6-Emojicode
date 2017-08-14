@@ -60,6 +60,11 @@ grammar Emojicode::Grammar
 			| '📜' \s+ <String>
 			}
 
+		token EnumValue
+			{
+			| '🔘' .
+			}
+
 		token TOP
 			{
 # tests/compilation/protocolSubclass.emojic
@@ -574,8 +579,8 @@ grammar Emojicode::Grammar
 # tests/compilation/errorAvocado.emojic
 #
 '🦃 🏜 🍇
-  🔘🔋
-  🔘🍟
+  ' <EnumValue> '
+  ' <EnumValue> '
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷🏜🔋 🍇
@@ -805,9 +810,9 @@ grammar Emojicode::Grammar
 🦃 🍴 🍇
 	🐊 🇨🇭
 
-  🔘🍫
-  🔘🍭
-  🔘🥐
+  ' <EnumValue> '
+  ' <EnumValue> '
+  ' <EnumValue> '
 
   🐖 🇨🇭 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷🍴🍫 🍇
@@ -838,9 +843,9 @@ grammar Emojicode::Grammar
 # tests/compilation/enum.emojic
 #
 '🦃 🏷 🍇
-  🔘🏁
-  🔘🚧
-  🔘📜
+  ' <EnumValue> '
+  ' <EnumValue> '
+  ' <EnumValue> '
 🍉
 
 🏁 🍇
@@ -1681,8 +1686,8 @@ grammar Emojicode::Grammar
 # tests/compilation/errorIsError.emojic
 #
 '🦃 🏜 🍇
-  🔘🔋
-  🔘🍟
+  ' <EnumValue> '
+  ' <EnumValue> '
 🍉
 
 🐇 🐟 🍇
@@ -1993,9 +1998,9 @@ grammar Emojicode::Grammar
 🍉
 
 🦃 ⏰ 🍇
-  🔘🥓
-  🔘🥞
-  🔘🥐
+  ' <EnumValue> '
+  ' <EnumValue> '
+  ' <EnumValue> '
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷⏰🥐 🍇
@@ -2206,8 +2211,8 @@ grammar Emojicode::Grammar
 # tests/compilation/errorInitializer.emojic
 #
 '🦃 🏜 🍇
-  🔘🔋
-  🔘🍟
+  ' <EnumValue> '
+  ' <EnumValue> '
 🍉
 
 🐇 🐟 🍇
@@ -2390,9 +2395,9 @@ grammar Emojicode::Grammar
 # tests/compilation/enumMethod.emojic
 #
 '🦃 ⏰ 🍇
-  🔘🥓
-  🔘🥞
-  🔘🥐
+  ' <EnumValue> '
+  ' <EnumValue> '
+  ' <EnumValue> '
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷⏰🥐 🍇
@@ -2478,8 +2483,8 @@ grammar Emojicode::Grammar
 # tests/compilation/errorPerfect.emojic
 #
 '🦃 🏜 🍇
-  🔘🔋
-  🔘🍟
+  ' <EnumValue> '
+  ' <EnumValue> '
 🍉
 
 🐇 🐟 🍇
@@ -3016,9 +3021,9 @@ grammar Emojicode::Grammar
 # tests/compilation/enumTypeMethod.emojic
 #
 '🦃 ⏰ 🍇
-  🔘🥓
-  🔘🥞
-  🔘🥐
+  ' <EnumValue> '
+  ' <EnumValue> '
+  ' <EnumValue> '
 
   🐇🐖 🔡 ' <Variable> ' 🔡 ➡️ ⏰ 🍇
     🍊 😛 ' <Variable> ' ' <String> ' 🍇
