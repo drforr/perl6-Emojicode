@@ -1521,10 +1521,8 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 ' <Block> '
 
   🐖 😀 🍇
-    😀 ' <List> '
-    🍊 ' <Variable> ' 🍇
-      😀 ' <String> '
-    🍉
+    ' <Print-Statement> '
+    🍊 ' <Variable> ' ' <Block> '
   🍉
 
   🐇 🐖 🐤 ➡️  ⚪️ ' <Block> '
@@ -1541,7 +1539,7 @@ grammar Emojicode::Grammar
   ' <Assignment-Statement> '
 
   🍊 ☁️ ' <Variable> ' 🍇
-    😀 ' <String> '
+    ' <Print-Statement> '
   🍉
   🍓 ' <Block> '
 
@@ -1588,9 +1586,7 @@ grammar Emojicode::Grammar
 
   🐖 🏷 ' <Variable> ' 🔡 ' <Block> '
 
-  🐖 😀 🍇
-    😀 ' <Variable> '
-  🍉
+  🐖 😀 ' <Block> '
 🍉
 
 
@@ -1634,10 +1630,8 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 ' <Block> '
 
   🐖 😀 🍇
-    😀 ' <List> '
-    🍊 ' <Variable> ' 🍇
-      😀 ' <String> '
-    🍉
+    ' <Print-Statement> '
+    🍊 ' <Variable> ' ' <Block> '
   🍉
 🍉
 
@@ -1650,10 +1644,8 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🚂 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🚂 🍼 ' <Variable> ' 🚂 ' <Block> '
 
   🐖 😀 🍇
-    😀 ' <List> '
-    🍊 ' <Variable> ' 🍇
-      😀 ' <String> '
-    🍉
+    ' <Print-Statement> '
+    🍊 ' <Variable> ' ' <Block> '
   🍉
 🍉
 
@@ -1949,9 +1941,7 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 ' <Block> '
 
   🐖 😀 🍇
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
     😀 🔷🔡🍨 ' <Variable> ' ' <String> '
   🍉
 
@@ -1971,15 +1961,9 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 👌 ' <Block> '
 
   🐖 😀 🍇
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
-    🍊 ' <Variable> ' 🍇
-      😀 ' <String> '
-    🍉
-    🍊 ' <Variable> ' 🍇
-      😀 ' <String> '
-    🍉
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
+    🍊 ' <Variable> ' ' <Block> '
+    🍊 ' <Variable> ' ' <Block> '
     😀 🔷🔡🍨 ' <Variable> ' ' <String> '
   🍉
 
@@ -2050,9 +2034,7 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 ' <Block> '
 
   🐖 😀 🍇
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
     😀 🔷🔡🍨 ' <Variable> ' ' <String> '
   🍉
 
@@ -2065,9 +2047,7 @@ grammar Emojicode::Grammar
     🍩🦋🍔 🐕
   🍉
 
-  🐇🐖 🦋 ' <Variable> ' 🍔 🍇
-    😀 ' <Variable> '
-  🍉
+  🐇🐖 🦋 ' <Variable> ' 🍔 ' <Block> '
 🍉
 
 🏁 🍇
@@ -2189,10 +2169,8 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 ' <Block> '
 
   🐖 😀 🍇
-    😀 ' <List> '
-    🍊 ' <Variable> ' 🍇
-      😀 ' <String> '
-    🍉
+    ' <Print-Statement> '
+    🍊 ' <Variable> ' ' <Block> '
   🍉
 🍉
 
@@ -2230,9 +2208,7 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 ' <Block> '
 
   🐖 😀 🍇
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
     😀 🔷🔡🍨 ' <Variable> ' ' <String> '
   🍉
 🍉
@@ -2244,9 +2220,7 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍼 ' <Variable> ' 🚀 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 ' <Block> '
 
-  🐖 😀 🍇
-    😀 ' <List> '
-  🍉
+  🐖 😀 ' <Block> '
 🍉
 
 🐇 📃 🍇
@@ -2257,13 +2231,9 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍔 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍬🍾 ' <Block> '
 
   🐖 😀 🍇
-    😀 ' <Variable> '
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <Variable> '
-    🍉
+    ' <Print-Statement> '
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
   🍉
 
   🐇🐖 🤒 ' <Variable> ' 🍨🐚📃 🍇
@@ -2421,9 +2391,7 @@ grammar Emojicode::Grammar
     🍮📝 ' <Variable> ' ' <SymbolLiteral> '
   🍉
 
-  🐖 😀 🍇
-    😀 ' <Variable> '
-  🍉
+  🐖 😀 ' <Block> '
 🍉
 
 🏁 🍇
@@ -2630,9 +2598,7 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 ' <Block> '
 
   🐖 😀 🍇
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
     😀 🔷🔡🍨 ' <Variable> ' ' <String> '
   🍉
 🍉
@@ -2644,9 +2610,7 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍼 ' <Variable> ' 🚀 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 ' <Block> '
 
-  🐖 😀 🍇
-    😀 ' <List> '
-  🍉
+  🐖 😀 ' <Block> '
 🍉
 
 🐇 📃 🍇
@@ -2657,13 +2621,9 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍔 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍬🍾 ' <Block> '
 
   🐖 😀 🍇
-    😀 ' <Variable> '
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <Variable> '
-    🍉
+    ' <Print-Statement> '
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
   🍉
 🍉
 
@@ -2746,9 +2706,7 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 ' <Block> '
 
   🐖 😀 🍇
-    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
-      😀 ' <List> '
-    🍉
+    🍊🍦 ' <Variable> ' ' <Variable> ' ' <Block> '
     😀 🔷🔡🍨 ' <Variable> ' ' <String> '
   🍉
 🍉
