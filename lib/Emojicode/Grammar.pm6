@@ -55,6 +55,11 @@ grammar Emojicode::Grammar
 			| '😀' \s+ <Expression>
 			}
 
+		token Include
+			{
+			| '📜' \s+ <String>
+			}
+
 		token TOP
 			{
 # tests/compilation/protocolSubclass.emojic
@@ -1232,7 +1237,7 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/includer.emojic
 #
-'📜 ' <String> '
+<Include> '
 
 🏁 🍇
   🍩💐🐤
