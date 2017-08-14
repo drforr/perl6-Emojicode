@@ -18,9 +18,24 @@ grammar Emojicode::Grammar
 			| '🔤' <-[ 🔤 ]>* '🔤'
 			}
 
+		token Documentation
+			{
+			| '🌮' <-[ 🌮 ]>* '🌮'
+			}
+
 		token List
 			{
 			| '🍪' ' '? [ [ <String> | '🔡' \s* <Variable> | <Variable> | <Number> ]+ %% \s+ ] ' '? '🍪'
+			}
+
+		token Comment
+			{
+			| '👴' <-[ \n ]>*
+			}
+
+		token SymbolLiteral
+			{
+			| '🔟' .
 			}
 
 		token TOP
@@ -386,7 +401,7 @@ grammar Emojicode::Grammar
     🍉
   🍉
 
-  👴 Returns a functional ID card
+  ' <Comment> '
   🐇🐖 👌🏾 ' <Variable> ' 🔡 ' <Variable> ' 🚂 ' <Variable> ' 🔡 ' <Variable> ' 🚀 ➡️ 🍇➡️🔡🍉 🍇
     🍊 ⬅️ ' <Variable> ' ' <Number> ' 🍇
       🍎 🍇 ➡️🔡 🍎 ' <List> ' 🍉
@@ -761,7 +776,7 @@ grammar Emojicode::Grammar
 # tests/compilation/protocolEnum.emojic
 #
 '🐊 🇨🇭 🍇
-  🌮 Returns a Swiss German description 🌮
+  ' <Documentation> '
   🐖 🇨🇭 ➡️ 🔡
 🍉
 
@@ -1061,7 +1076,7 @@ grammar Emojicode::Grammar
     🛂 ' <Variable> '
   🍉
 
-  😀 🔡 💶 ' <Variable> ' ' <Number> ' 👴 Print the balance
+  😀 🔡 💶 ' <Variable> ' ' <Number> ' ' <Comment> '
 🍉
 '
 |
@@ -1441,13 +1456,13 @@ grammar Emojicode::Grammar
   🍮 ' <Variable> ' ' <String> '
 
   🍻 😀 ' <Variable> '
-  🍻 😀 🍻 📝 ' <Variable> ' 🔟,
+  🍻 😀 🍻 📝 ' <Variable> ' ' <SymbolLiteral> '
 
   🍰 ' <Variable> ' 🍬🔡
   🍮 ' <Variable> ' ⚡️
 
   🍻 😀 ' <Variable> '
-  🍻 😀 🍻 📝 ' <Variable> ' 🔟,
+  🍻 😀 🍻 📝 ' <Variable> ' ' <SymbolLiteral> '
 
   😀 ' <String> '
 🍉
@@ -1890,8 +1905,8 @@ grammar Emojicode::Grammar
 
 🏁 🍇
   🍦 ' <Variable> ' 🌶📝 ' <String> '
-  😀 🍭 ' <Variable> ' 🔟!
-  😀 🍭 ' <Variable> ' 🔟?
+  😀 🍭 ' <Variable> ' ' <SymbolLiteral> '
+  😀 🍭 ' <Variable> ' ' <SymbolLiteral> '
 
 	🍦 ' <Variable> ' 🔷🕵🆕 ' <String> '
 	🍦 ' <Variable> ' 🌶🏷 ' <Variable> '
@@ -2090,8 +2105,8 @@ grammar Emojicode::Grammar
 
   🍦 ' <Variable> ' 🌶 📝 ' <Variable> '
 
-  😀 🍭 ' <Variable> ' 🔟!
-  😀 🍭 ' <Variable> ' 🔟?
+  😀 🍭 ' <Variable> ' ' <SymbolLiteral> '
+  😀 🍭 ' <Variable> ' ' <SymbolLiteral> '
 
   🍦 ' <Variable> ' 🍇 ' <Variable> ' 🔡 ➡️ 🔡
     😀 ' <List> '
@@ -2814,7 +2829,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🖋 🍇
-    🍮📝 ' <Variable> ' 🔟5
+    🍮📝 ' <Variable> ' ' <SymbolLiteral> '
   🍉
 
   🐖 😀 🍇
@@ -2968,10 +2983,10 @@ grammar Emojicode::Grammar
 
   🍮 ' <Variable> ' ' <String> '
 
-	🍮📝 ' <Variable> ' 🔟1
+	🍮📝 ' <Variable> ' ' <SymbolLiteral> '
 	😀 ' <Variable> '
 
-	🍮📝 ' <Variable> ' 🔟2
+	🍮📝 ' <Variable> ' ' <SymbolLiteral> '
 	😀 ' <Variable> '
 🍉
 '
@@ -2993,7 +3008,7 @@ grammar Emojicode::Grammar
     🍊 😛 ' <Variable> ' ' <String> ' 🍇
       🍎 🔷⏰🥓
     🍉
-    🍎 🔷⏰🥓 👴 Default to bacon
+    🍎 🔷⏰🥓 ' <Comment> '
   🍉
 
   🐖 🔡 ➡️ 🔡 🍇
