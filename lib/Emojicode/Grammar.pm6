@@ -8,16 +8,21 @@ grammar Emojicode::Grammar
 			| '-'? '0'
 			}
 
+		token Variable
+			{
+			| <[ a .. z A .. Z ]> <[ a .. z A .. Z 0 .. 9 ]>*
+			}
+
 		token TOP
 			{
 # tests/compilation/protocolSubclass.emojic
 #
 '🐊 💡 🍇
-  🐖 🔦 degree 🚀
+  🐖 🔦 ' <Variable> ' 🚀
 🍉
 
 🐊 📞 🍇
-  🐖 📞 number 🔡
+  🐖 📞 ' <Variable> ' 🔡
   🐖 🔙 ➡️ 🔡
 🍉
 
@@ -31,12 +36,12 @@ grammar Emojicode::Grammar
     😀 🔤This method is never called🔤
   🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using cellular network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using cellular network to call 🔤 ' <Variable> ' 🍪
   🍉
 
   🐖 🔙➡️ 🔡 🍇
@@ -45,8 +50,8 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 ⌚️  📱 🍇
-  ✒️ 🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on display at 🔤 🔡 degree ' <Number> ' 🍪
+  ✒️ 🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on display at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
@@ -55,8 +60,8 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤From a landline, calling 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤From a landline, calling 🔤 ' <Variable> ' 🍪
   🍉
 
   🐖 🔙➡️ 🔡 🍇
@@ -69,27 +74,27 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on flashlight at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on flashlight at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
 🐇 🥊 🍇
-  🐇🐖 💡 lightEmitting 💡 🍇
-    🔦 lightEmitting ' <Number> '
+  🐇🐖 💡 ' <Variable> ' 💡 🍇
+    🔦 ' <Variable> ' ' <Number> '
   🍉
 
-  🐇🐖 📞 phoneCapabilities 📞 🍇
-    📞 phoneCapabilities 🔤2929294757🔤
-    😀 🔙phoneCapabilities
+  🐇🐖 📞 ' <Variable> ' 📞 🍇
+    📞 ' <Variable> ' 🔤2929294757🔤
+    😀 🔙' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 iphone 🔷📱🆕
+  🍦 ' <Variable> ' 🔷📱🆕
 
-  🍩💡🥊 iphone
-  🍩📞🥊 iphone
+  🍩💡🥊 ' <Variable> '
+  🍩📞🥊 ' <Variable> '
   🍩📞🥊 🔷☎️🆕
   🍩💡🥊 🔷🔦🆕
   🍩📞🥊 🔷⌚️🆕
@@ -106,33 +111,33 @@ grammar Emojicode::Grammar
 🕊 🍕 🍇
   🐊 💷
 
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
-  🍰 extraLarge 👌
-  🍰 extraHot 👌
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 👌
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍼 extraHot 👌 🍼 extraLarge 👌 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 👌 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Pizza name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Pizza name: 🔤 ' <Variable> ' 🍪
     🍉
-    🍊 extraLarge 🍇
+    🍊 ' <Variable> ' 🍇
       😀 🔤is extra large🔤
     🍉
-    🍊 extraHot 🍇
+    🍊 ' <Variable> ' 🍇
       😀 🔤is extra hot🔤
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 🍉
 
 🏁 🍇
-  🍦 pizza 🔷🍕🆕 🔤Romana🔤 🍨 🔤tomato🔤 🔤mozzarella🔤 🔤anchovies🔤 🍆 👍 👍
-  🍰 notes 💷
-  🍮 notes pizza
-  😀 notes
+  🍦 ' <Variable> ' 🔷🍕🆕 🔤Romana🔤 🍨 🔤tomato🔤 🔤mozzarella🔤 🔤anchovies🔤 🍆 👍 👍
+  🍰 ' <Variable> ' 💷
+  🍮 ' <Variable> ' ' <Variable> '
+  😀 ' <Variable> '
 🍉
 '
 |
@@ -234,23 +239,23 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/protocolGenericLayerValueType.emojic
 #
-'🐊 📠🐚A⚪️ 🍇
-  🐖 ⏱ a A
-  🐖 🚚 ➡️ A
+'🐊 📠🐚' <Variable> '⚪️ 🍇
+  🐖 ⏱ ' <Variable> ' ' <Variable> '
+  🐖 🚚 ➡️ ' <Variable> '
 🍉
 
 🕊 🍔 🍇
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Burger name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Burger name: 🔤 ' <Variable> ' 🍪
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 🍉
 
@@ -259,8 +264,8 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 ⏱ roomNumber 🚂 🍇
-    😀 🍪 🔤Requested 🔤 🔡 roomNumber ' <Number> ' 🍪
+  🐖 ⏱ ' <Variable> ' 🚂 🍇
+    😀 🍪 🔤Requested 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
   🐖 🚚 ➡️ 🚂 🍇
@@ -273,9 +278,9 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 ⏱ burgerType 🍔 🍇
+  🐖 ⏱ ' <Variable> ' 🍔 🍇
     😀 🍪 🔤Requested 🔤 🍪
-    😀 burgerType
+    😀 ' <Variable> '
   🍉
 
   🐖 🚚 ➡️ 🍔 🍇
@@ -284,17 +289,17 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍰 a 📠🐚🚂
-  🍮 a 🔷🏨🆕
+  🍰 ' <Variable> ' 📠🐚🚂
+  🍮 ' <Variable> ' 🔷🏨🆕
 
-  ⏱ a ' <Number> '
-  😀🔡 🚚 a ' <Number> '
+  ⏱ ' <Variable> ' ' <Number> '
+  😀🔡 🚚 ' <Variable> ' ' <Number> '
 
-  🍰 b 📠🐚🍔
-  🍮 b 🔷🏣🆕
+  🍰 ' <Variable> ' 📠🐚🍔
+  🍮 ' <Variable> ' 🔷🏣🆕
 
-  ⏱ b 🔷🍔🆕 🔤Standard Burger🔤 🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆
-  😀 🚚 b
+  ⏱ ' <Variable> ' 🔷🍔🆕 🔤Standard Burger🔤 🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆
+  😀 🚚 ' <Variable> '
 🍉
 '
 |
@@ -362,160 +367,160 @@ grammar Emojicode::Grammar
 # tests/compilation/closureCapture.emojic
 #
 '🐇 🍤 🍇
-  🐇🐖 🙋 name 🔡 ➡️ 🍇🚂➡️🔡🍉 🍇
-    🍎 🍇 hour 🚂 ➡️ 🔡
-      🍊 😛 hour ' <Number> ' 🍇
-        🍎 🍪 🔤Have a good lunch, 🔤 name🍪
+  🐇🐖 🙋 ' <Variable> ' 🔡 ➡️ 🍇🚂➡️🔡🍉 🍇
+    🍎 🍇 ' <Variable> ' 🚂 ➡️ 🔡
+      🍊 😛 ' <Variable> ' ' <Number> ' 🍇
+        🍎 🍪 🔤Have a good lunch, 🔤 ' <Variable> '🍪
       🍉
-      🍎 🍪 🔤Hello, 🔤 name🍪
+      🍎 🍪 🔤Hello, 🔤 ' <Variable> '🍪
     🍉
   🍉
 
   👴 Returns a functional ID card
-  🐇🐖 👌🏾 name 🔡 age 🚂 birthplace 🔡 height 🚀 ➡️ 🍇➡️🔡🍉 🍇
-    🍊 ⬅️ age ' <Number> ' 🍇
-      🍎 🍇 ➡️🔡 🍎 🍪 🔤It’s a kid born in 🔤 birthplace 🔤 named 🔤 name 🍪 🍉
+  🐇🐖 👌🏾 ' <Variable> ' 🔡 ' <Variable> ' 🚂 ' <Variable> ' 🔡 ' <Variable> ' 🚀 ➡️ 🍇➡️🔡🍉 🍇
+    🍊 ⬅️ ' <Variable> ' ' <Number> ' 🍇
+      🍎 🍇 ➡️🔡 🍎 🍪 🔤It’s a kid born in 🔤 ' <Variable> ' 🔤 ' <Variable> ' 🔤 ' <Variable> ' 🍪 🍉
     🍉
-		🍎 🍇 ➡️🔡 🍎 🍪 name 🔤: Born in 🔤 birthplace  🔤 and 🔤 🔡 height ' <Number> ' 🔤 meters tall.🔤 🍪 🍉
+		🍎 🍇 ➡️🔡 🍎 🍪 ' <Variable> ' 🔤: Born in 🔤 ' <Variable> '  🔤 and 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤 meters tall.🔤 🍪 🍉
   🍉
 🍉
 
 🏁 🍇
-  🍦 florenceGreeter 🍩🙋🍤 🔤Florence🔤
-  😀 🍭 florenceGreeter ' <Number> '
-  😀 🍭 florenceGreeter ' <Number> '
-  😀 🍭 florenceGreeter ' <Number> '
+  🍦 ' <Variable> ' 🍩🙋🍤 🔤Florence🔤
+  😀 🍭 ' <Variable> ' ' <Number> '
+  😀 🍭 ' <Variable> ' ' <Number> '
+  😀 🍭 ' <Variable> ' ' <Number> '
 
-  🍦 violetGreeter 🍩🙋🍤 🔤Violet🔤
-  😀 🍭 violetGreeter ' <Number> '
-  😀 🍭 violetGreeter ' <Number> '
-  😀 🍭 violetGreeter ' <Number> '
+  🍦 ' <Variable> ' 🍩🙋🍤 🔤Violet🔤
+  😀 🍭 ' <Variable> ' ' <Number> '
+  😀 🍭 ' <Variable> ' ' <Number> '
+  😀 🍭 ' <Variable> ' ' <Number> '
 
-	🍦 alistairID 🍩👌🏾🍤 🔤Alistair🔤 ' <Number> '	🔤Cambridge🔤 ' <Number> '
-	😀 🍭 alistairID
+	🍦 ' <Variable> ' 🍩👌🏾🍤 🔤Alistair🔤 ' <Number> '	🔤Cambridge🔤 ' <Number> '
+	😀 🍭 ' <Variable> '
 
-	🍦 zachID 🍩👌🏾🍤 🔤Zach🔤 ' <Number> ' 🔤Derry🔤 ' <Number> '
-	😀 🍭 zachID
+	🍦 ' <Variable> ' 🍩👌🏾🍤 🔤Zach🔤 ' <Number> ' 🔤Derry🔤 ' <Number> '
+	😀 🍭 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/valueType.emojic
 #
 '🕊 🌼 🍇
-  🍰 abc 🔡
-  🍰 zahl 🚂
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 abc 🔡 zahlIn 🚂 🍇
-    🍮 zahl ➕ zahlIn ' <Number> '
+  🐈 🆕 🍼 ' <Variable> ' 🔡 ' <Variable> ' 🚂 🍇
+    🍮 ' <Variable> ' ➕ ' <Variable> ' ' <Number> '
   🍉
 
   🐖 😀 🍇
-    😀 abc
-    😀 🔡 zahl ' <Number> '
+    😀 ' <Variable> '
+    😀 🔡 ' <Variable> ' ' <Number> '
   🍉
 🍉
 
 🕊 🌸 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇
 
   🍉
 
   🐖 🤣 ➡️ 🔡 🍇
-    🍎 name
+    🍎 ' <Variable> '
   🍉
 🍉
 
 🕊 💐 🍇
-  🍰 blume2 🌼
-  🍰 blume1 🌸
+  🍰 ' <Variable> ' 🌼
+  🍰 ' <Variable> ' 🌸
 
   🐈 🆕 name 🔡  🍇
-    🍮 blume1 🔷🌸🆕 name
-    🍮 blume2 🔷🌼🆕 🍪 name 🔤_2🔤 🍪 ' <Number> '
+    🍮 ' <Variable> ' 🔷🌸🆕 ' <Variable> '
+    🍮 ' <Variable> ' 🔷🌼🆕 🍪 ' <Variable> ' 🔤_2🔤 🍪 ' <Number> '
   🍉
 
   🐖 🍐 ➡️ 🔡 🍇
-    🍎 🤣 blume1
+    🍎 🤣 ' <Variable> '
   🍉
 
   🐖 🌼 ➡️ 🌼 🍇
-    🍎 blume2
+    🍎 ' <Variable> '
   🍉
 🍉
 
 🕊 ⚖️ 🍇
-  🍰 a 🌼
-  🍰 b 🌼
+  🍰 ' <Variable> ' 🌼
+  🍰 ' <Variable> ' 🌼
 
-  🐈 🆕 🍼 a 🌼 🍼 b 🌼 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🌼 🍼 ' <Variable> ' 🌼 🍇🍉
 
   🐖 🌗 ➡️ 🌼 🍇
-    🍎 a
+    🍎 ' <Variable> '
   🍉
 
   🐖 🌓 ➡️ 🌼 🍇
-    🍎 b
+    🍎 ' <Variable> '
   🍉
 🍉
 
 🕊 🌷 🍇
-  🍰 blume1 💐
-  🍰 blume2 🌼
+  🍰 ' <Variable> ' 💐
+  🍰 ' <Variable> ' 🌼
 
-  🐈 🆕 name 🔡 🍇
-    🍮 blume1 🔷⚫️🆕 name
-    🍮 blume2 🔷⚫️🆕 🔤sport🔤 ' <Number> '
+  🐈 🆕 ' <Variable> ' 🔡 🍇
+    🍮 ' <Variable> ' 🔷⚫️🆕 ' <Variable> '
+    🍮 ' <Variable> ' 🔷⚫️🆕 🔤sport🔤 ' <Number> '
   🍉
 
   🐖 🥐 ➡️ 🔡 🍇
-    🍎 🍐 blume1
+    🍎 🍐 ' <Variable> '
   🍉
 
   🐖 🌼 ➡️ ⚖️ 🍇
-    🍎 🔷⚫️🆕 blume2 🌼 blume1
+    🍎 🔷⚫️🆕 ' <Variable> ' 🌼 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 ph 🔷🌼🆕 🔤Philadelphia🔤 ' <Number> '
-  🍦 mi 🔷🌸🆕 🔤Miami🔤
-  😀 ph
-  😀 🤣 mi
+  🍦 ' <Variable> ' 🔷🌼🆕 🔤Philadelphia🔤 ' <Number> '
+  🍦 ' <Variable> ' 🔷🌸🆕 🔤Miami🔤
+  😀 ' <Variable> '
+  😀 🤣 ' <Variable> '
 
   😀 🍐 🔷💐🆕 🔤NY🔤
-  🍦 la 🔷💐🆕 🔤LA🔤
-  😀 🍐 la
-  😀 🌼 la
+  🍦 ' <Variable> ' 🔷💐🆕 🔤LA🔤
+  😀 🍐 ' <Variable> '
+  😀 🌼 ' <Variable> '
 
-  🍦 fl 🔷🌷🆕 🔤FL🔤
-  😀 🥐 fl
-  🍦 bothFlowers 🌼 fl
-  😀 🌗 bothFlowers
-  😀 🌓 bothFlowers
+  🍦 ' <Variable> ' 🔷🌷🆕 🔤FL🔤
+  😀 🥐 ' <Variable> '
+  🍦 ' <Variable> ' 🌼 ' <Variable> '
+  😀 🌗 ' <Variable> '
+  😀 🌓 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/genericsValueType.emojic
 #
-'🕊 🎁 🐚 T 🔵 🍇
+'🕊 🎁 🐚 ' <Variable> ' 🔵 🍇
 
-  🍰 etwas T
+  🍰 ' <Variable> ' ' <Variable> '
 
-  🐈 ✂️ =etwas T 🍇
-    🍮 etwas =etwas
+  🐈 ✂️ =etwas ' <Variable> ' 🍇
+    🍮 ' <Variable> ' =etwas
   🍉
 
-  🐖 🎉 ➡️  T 🍇
-    🍎 etwas
+  🐖 🎉 ➡️  ' <Variable> ' 🍇
+    🍎 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 kiste 🔷 🎁🐚🔡 ✂️ 🔤week🔤
+  🍦 ' <Variable> ' 🔷 🎁🐚🔡 ✂️ 🔤week🔤
 
-  😀 🎉 kiste
+  😀 🎉 ' <Variable> '
 🍉
 '
 |
@@ -555,32 +560,32 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🥑 a 🍩🙋🐟 🍇
-    😀 a
+  🥑 ' <Variable> ' 🍩🙋🐟 🍇
+    😀 ' <Variable> '
   🍉
-  🍓 error 🍇
-    😀 🍪🔤An error occured: 🔤 🔡 error 🍪
-  🍉
-
-  🥑 a 🍩🙅🐟 🍇
-    😀 a
-  🍉
-  🍓 error 🍇
-    😀 🍪🔤An error occured: 🔤 🔡 error 🍪
+  🍓 ' <Variable> ' 🍇
+    😀 🍪🔤An error occured: 🔤 🔡 ' <Variable> ' 🍪
   🍉
 
-  🥑 a 🍩🙅‍♂️🐟 🍇
-    😀 🍺🔲 a 🔡
+  🥑 ' <Variable> ' 🍩🙅🐟 🍇
+    😀 ' <Variable> '
   🍉
-  🍓 error 🍇
-    😀 🍪🔤An error occured: 🔤 🔡 error 🍪
+  🍓 ' <Variable> ' 🍇
+    😀 🍪🔤An error occured: 🔤 🔡 ' <Variable> ' 🍪
   🍉
 
-  🥑 a 🍩🙋‍♂️ 🐟 🍇
-    😀 🍺🔲 a 🔡
+  🥑 ' <Variable> ' 🍩🙅‍♂️🐟 🍇
+    😀 🍺🔲 ' <Variable> ' 🔡
   🍉
-  🍓 error 🍇
-    😀 🍪🔤An error occured: 🔤 🔡 error 🍪
+  🍓 ' <Variable> ' 🍇
+    😀 🍪🔤An error occured: 🔤 🔡 ' <Variable> ' 🍪
+  🍉
+
+  🥑 ' <Variable> ' 🍩🙋‍♂️ 🐟 🍇
+    😀 🍺🔲 ' <Variable> ' 🔡
+  🍉
+  🍓 ' <Variable> ' 🍇
+    😀 🍪🔤An error occured: 🔤 🔡 ' <Variable> ' 🍪
   🍉
 🍉
 '
@@ -588,65 +593,65 @@ grammar Emojicode::Grammar
 # tests/compilation/gcStressTest1.emojic
 #
 '🐇 😇 🍇
-  🍰 string 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 int 🚂 🍇
-    🍮 string 🍪🔤Music is a world within itself 🔤 🔡 int ' <Number> ' 🍪
+  🐈 🆕 ' <Variable> ' 🚂 🍇
+    🍮 ' <Variable> ' 🍪🔤Music is a world within itself 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
   🐖 🦆 🍇
-    😀 string
+    😀 ' <Variable> '
   🍉
 🍉
 
 🐇 🤣 🍇
-	🍰 container 😇
+	🍰 ' <Variable> ' 😇
 
-  🐈 🆕 int 🚂 🍇
-    🍮 container 🔷😇🆕 int
+  🐈 🆕 ' <Variable> ' 🚂 🍇
+    🍮 ' <Variable> ' 🔷😇🆕 ' <Variable> '
   🍉
 
   🐖 🦆 🍇
-    🦆 container
+    🦆 ' <Variable> '
   🍉
 🍉
 
 🐇 🍗 🍇
-  🍰 ab 🍬🔡
-  🍰 ac 🍬🔡
-  🍰 a2 🍬🔡
-  🍰 a1 🍬🔡
-  🍰 a3 🍬🔡
-  🍰 a5 🍬🔡
-  🍰 a7 🍬🔡
-  🍰 a8 🍬🔡
-  🍰 a0 🍬🔡
-  🍰 as 🍬🔡
-  🍰 dab 🍬🔡
-  🍰 dac 🍬🔡
-  🍰 da2 🍬🔡
-  🍰 da1 🍬🔡
-  🍰 da3 🍬🔡
-  🍰 da5 🍬🔡
-  🍰 da7 🍬🔡
-  🍰 da8 🍬🔡
-  🍰 da0 🍬🔡
-  🍰 das 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
 
   🐈 🆕 🍇
   🍉
 🍉
 
 🏁 🍇
-  🍦 list 🍨🔷🤣🆕 ' <Number> '🍆
-  🔂 i ⏩ ' <Number> ' ' <Number> ' 🍇
+  🍦 ' <Variable> ' 🍨🔷🤣🆕 ' <Number> '🍆
+  🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
     🍦 _ 🔷🍗🆕
-    🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-      🐻 list 🔷🤣🆕 i
+    🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🐻 ' <Variable> ' 🔷🤣🆕 ' <Variable> '
     🍉
   🍉
-  🔂 o list 🍇
-    🦆 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    🦆 ' <Variable> '
   🍉
 🍉
 '
@@ -654,65 +659,65 @@ grammar Emojicode::Grammar
 # tests/compilation/gcStressTest4.emojic
 #
 '🕊 😇 🍇
-  🍰 string 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 int 🚂 🍇
-    🍮 string 🍪🔤Music is a world within itself 🔤 🔡 int ' <Number> ' 🍪
+  🐈 🆕 ' <Variable> ' 🚂 🍇
+    🍮 ' <Variable> ' 🍪🔤Music is a world within itself 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
   🐖 🦆 🍇
-    😀 string
+    😀 ' <Variable> '
   🍉
 🍉
 
 🕊 🤣 🍇
-	🍰 container 😇
+	🍰 ' <Variable> ' 😇
 
-  🐈 🆕 int 🚂 🍇
-    🍮 container 🔷😇🆕 int
+  🐈 🆕 ' <Variable> ' 🚂 🍇
+    🍮 ' <Variable> ' 🔷😇🆕 ' <Variable> '
   🍉
 
   🐖 🦆 🍇
-    🦆 container
+    🦆 ' <Variable> '
   🍉
 🍉
 
 🐇 🍗 🍇
-  🍰 ab 🍬🔡
-  🍰 ac 🍬🔡
-  🍰 a2 🍬🔡
-  🍰 a1 🍬🔡
-  🍰 a3 🍬🔡
-  🍰 a5 🍬🔡
-  🍰 a7 🍬🔡
-  🍰 a8 🍬🔡
-  🍰 a0 🍬🔡
-  🍰 as 🍬🔡
-  🍰 dab 🍬🔡
-  🍰 dac 🍬🔡
-  🍰 da2 🍬🔡
-  🍰 da1 🍬🔡
-  🍰 da3 🍬🔡
-  🍰 da5 🍬🔡
-  🍰 da7 🍬🔡
-  🍰 da8 🍬🔡
-  🍰 da0 🍬🔡
-  🍰 das 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
 
   🐈 🆕 🍇
   🍉
 🍉
 
 🏁 🍇
-  🍦 list 🍨🔷🤣🆕 ' <Number> '🍆
-  🔂 i ⏩ ' <Number> ' ' <Number> ' 🍇
+  🍦 ' <Variable> ' 🍨🔷🤣🆕 ' <Number> '🍆
+  🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
     🍦 _ 🔷🍗🆕
-    🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-      🐻 list 🔷🤣🆕 i
+    🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🐻 ' <Variable> ' 🔷🤣🆕 ' <Variable> '
     🍉
   🍉
-  🔂 o list 🍇
-    🦆 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    🦆 ' <Variable> '
   🍉
 🍉
 '
@@ -730,9 +735,9 @@ grammar Emojicode::Grammar
 #
 '🐋 🔡 🍇
   🐖 🐷 ➡️ 🔡 🍇
-    🍦 firstLetter 🔪 🐕 ' <Number> ' ' <Number> '
-    🍦 rest 🔪 🐕 ' <Number> ' 🐔 🐕
-    🍎 🍪 rest firstLetter 🔤ay🔤 🍪
+    🍦 ' <Variable> ' 🔪 🐕 ' <Number> ' ' <Number> '
+    🍦 ' <Variable> ' 🔪 🐕 ' <Number> ' 🐔 🐕
+    🍎 🍪 ' <Variable> ' ' <Variable> ' 🔤ay🔤 🍪
   🍉
 🍉
 
@@ -773,7 +778,7 @@ grammar Emojicode::Grammar
 
 🐇 🥊 🍇
   🐇🐖 🇨🇭 swissGermanDescribable 🇨🇭 🍇
-    😀 🇨🇭 swissGermanDescribable
+    😀 🇨🇭 ' <Variable> '
   🍉
 🍉
 
@@ -792,22 +797,22 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-	🍦 a 🔷🏷🏁
-	🍦 b 🔷🏷🏁
-  🍦 c 🔷🏷🚧
-  🍦 d 🔷🏷📜
-  🍦 e 🔷🏷📜
+	🍦 ' <Variable> ' 🔷🏷🏁
+	🍦 ' <Variable> ' 🔷🏷🏁
+  🍦 ' <Variable> ' 🔷🏷🚧
+  🍦 ' <Variable> ' 🔷🏷📜
+  🍦 ' <Variable> ' 🔷🏷📜
 
-	🍊 😛 a b 🍇
+	🍊 😛 ' <Variable> ' ' <Variable> ' 🍇
 		😀 🔤hooray🔤
 	🍉
-  🍊 😛 a c 🍇
+  🍊 😛 ' <Variable> ' ' <Variable> ' 🍇
     😀 🔤hooray🔤
   🍉
-  🍊 😛 a d 🍇
+  🍊 😛 ' <Variable> ' ' <Variable> ' 🍇
     😀 🔤hooray🔤
   🍉
-  🍊 😛 d e 🍇
+  🍊 😛 ' <Variable> ' ' <Variable> ' 🍇
     😀 🔤hooray🔤
   🍉
 🍉
@@ -815,27 +820,27 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/genericProtocol.emojic
 #
-'🐊 🦀🐚Key⚪️🐚Element⚪️ 🍇
-	🐖 🦀 key Key ➡️ Element
+'🐊 🦀🐚' <Variable> '⚪️🐚' <Variable> '⚪️ 🍇
+	🐖 🦀 ' <Variable> ' ' <Variable> ' ➡️ ' <Variable> '
 🍉
 
-🐇 🐾 🐚Element⚪️ 🍇
-	🐊 🦀🐚🔡🐚Element
+🐇 🐾 🐚' <Variable> '⚪️ 🍇
+	🐊 🦀🐚🔡🐚' <Variable> '
 
 	🐈 🆕 🍇
 
 	🍉
 
-	🐖 🦀 key 🔡 ➡️ Element 🍇
+	🐖 🦀 ' <Variable> ' 🔡 ➡️ ' <Variable> ' 🍇
 		🍎 ' <Number> '
 	🍉
 🍉
 
 🏁 🍇
-  🍰 a 🦀🐚🔡🐚🚂
-  🍮 a 🔷🐾🐚🚂🆕
+  🍰 ' <Variable> ' 🦀🐚🔡🐚🚂
+  🍮 ' <Variable> ' 🔷🐾🐚🚂🆕
 
-  😀 🔡 🦀 a 🔤asdfsadf🔤 ' <Number> '
+  😀 🔡 🦀 ' <Variable> ' 🔤asdfsadf🔤 ' <Number> '
 🍉
 '
 |
@@ -851,12 +856,12 @@ grammar Emojicode::Grammar
 # tests/compilation/downcastClass.emojic
 #
 '🐇 🐟 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🙋 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
@@ -871,21 +876,21 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍰 a 🔵
-  🍮 a 🔷🐟🆕 🔤Shawn🔤
-  🍰 b 🔵
-  🍮 b 🔤Jane🔤
-  🍰 c 🐟
-  🍮 c 🔷🐡🆕
+  🍰 ' <Variable> ' 🔵
+  🍮 ' <Variable> ' 🔷🐟🆕 🔤Shawn🔤
+  🍰 ' <Variable> ' 🔵
+  🍮 ' <Variable> ' 🔤Jane🔤
+  🍰 ' <Variable> ' 🐟
+  🍮 ' <Variable> ' 🔷🐡🆕
 
-  🙋 🍺 🔲 a 🐟
-  😀 🍺 🔲 b 🔡
-  🥛 🍺 🔲 c 🐡
+  🙋 🍺 🔲 ' <Variable> ' 🐟
+  😀 🍺 🔲 ' <Variable> ' 🔡
+  🥛 🍺 🔲 ' <Variable> ' 🐡
 
-  🍊🍦 as 🔲 a 🔡  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🔡  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 b 🐟  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🐟  🍇
     😀 🔤Oops🔤
   🍉
 🍉
@@ -894,11 +899,11 @@ grammar Emojicode::Grammar
 # tests/compilation/repeatWhile.emojic
 #
 '🏁 🍇
-  🍮 a ' <Number> '
+  🍮 ' <Variable> ' ' <Number> '
 
-  🔁 ◀️ a ' <Number> ' 🍇
-    😀 🔡 a ' <Number> '
-    🍮➕ a ' <Number> '
+  🔁 ◀️ ' <Variable> ' ' <Number> ' 🍇
+    😀 🔡 ' <Variable> ' ' <Number> '
+    🍮➕ ' <Variable> ' ' <Number> '
   🍉
 🍉
 '
@@ -906,7 +911,7 @@ grammar Emojicode::Grammar
 # tests/compilation/class.emojic
 #
 '🐇 😮 🍇
-	🐇🐖 🐸 a 🔡 ➡️ 😮 🍇
+	🐇🐖 🐸 ' <Variable> ' 🔡 ➡️ 😮 🍇
 		🍎 🔷 🐕 🆕
 	🍉
 
@@ -996,10 +1001,10 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 classes 🍨🔳🐟 🔳🐡 🔳🐋 🔳🐠  🍆
-  🔂 class classes 🍇
-    🍦 fish 🔷⬛️ class 🆕
-    🙋 fish
+  🍦 ' <Variable> ' 🍨🔳🐟 🔳🐡 🔳🐋 🔳🐠  🍆
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    🍦 ' <Variable> ' 🔷⬛️ ' <Variable> ' 🆕
+    🙋 ' <Variable> '
   🍉
 🍉
 '
@@ -1007,82 +1012,82 @@ grammar Emojicode::Grammar
 # tests/compilation/threads.emojic
 #
 '🐇 🏦 🍇
-  🍰 account 🚂
+  🍰 ' <Variable> ' 🚂
 
   🐈 🆕 🍇
-    🍮 account ' <Number> '
+    🍮 ' <Variable> ' ' <Number> '
   🍉
 
-  🐖 💸 sum 🚂 🍇
-    🍮 account ➖ account sum
+  🐖 💸 ' <Variable> ' 🚂 🍇
+    🍮 ' <Variable> ' ➖ ' <Variable> ' ' <Variable> '
   🍉
 
   🐖 💶 ➡️ 🚂 🍇
-    🍎 account
+    🍎 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 threads 🔷🍨🐚💈🐸
+  🍦 ' <Variable> ' 🔷🍨🐚💈🐸
 
-  🍦 account 🔷🏦🆕
+  🍦 ' <Variable> ' 🔷🏦🆕
 
-  🍦 mutex 🔷🔐🆕
+  🍦 ' <Variable> ' 🔷🔐🆕
 
-  🔂 i ⏩ ' <Number> ' ' <Number> ' 🍇
-    🐻 threads 🔷💈🆕 🍇
-      🔂 j ⏩ ' <Number> ' ' <Number> ' 🍇
-        🔒 mutex
-        🍊 ➡️ 💶 account ' <Number> ' 🍇
+  🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
+    🐻 ' <Variable> ' 🔷💈🆕 🍇
+      🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
+        🔒 ' <Variable> '
+        🍊 ➡️ 💶 ' <Variable> ' ' <Number> ' 🍇
           😀 🔤Money, money, money – Must be funny🔤
-          💸 account ' <Number> '
+          💸 ' <Variable> ' ' <Number> '
         🍉
-        🔓 mutex
+        🔓 ' <Variable> '
       🍉
     🍉
   🍉
 
-  🔂 thread threads 🍇
-    🛂 thread
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    🛂 ' <Variable> '
   🍉
 
-  😀 🔡 💶 account ' <Number> ' 👴 Print the balance
+  😀 🔡 💶 ' <Variable> ' ' <Number> ' 👴 Print the balance
 🍉
 '
 |
 # tests/compilation/closureCaptureThis.emojic
 #
 '🐇 🕵 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
   🐈 🐑 @name 🔡 🍇
-    🍮 name @name
+    🍮 ' <Variable> ' @name
   🍉
 
-  🐖 🏷 neuerName 🔡 🍇
-    🍮 name neuerName
+  🐖 🏷 ' <Variable> ' 🔡 🍇
+    🍮 ' <Variable> ' ' <Variable> '
   🍉
 
   🐖 💳 ➡️ 🍇➡️🔡🍉 🍇
     🍎 🍇 ➡️ 🔡
-      🍎 name
+      🍎 ' <Variable> '
     🍉
   🍉
 🍉
 
 🏁 🍇
-  🍦 pi 🔷🕵🐑 🔤Arthur Lemming🔤
-  🍦 nameGetter 💳 pi
+  🍦 ' <Variable> ' 🔷🕵🐑 🔤Arthur Lemming🔤
+  🍦 ' <Variable> ' 💳 ' <Variable> '
 
-  😀 🍭 nameGetter
+  😀 🍭 ' <Variable> '
 
-  🏷 pi 🔤Sherlock Holmes🔤
+  🏷 ' <Variable> ' 🔤Sherlock Holmes🔤
 
-  😀 🍭 nameGetter
+  😀 🍭 ' <Variable> '
 
-  🏷 pi 🔤Thomas Magnum🔤
+  🏷 ' <Variable> ' 🔤Thomas Magnum🔤
 
-  😀 🍭 nameGetter
+  😀 🍭 ' <Variable> '
 🍉
 '
 |
@@ -1098,20 +1103,20 @@ grammar Emojicode::Grammar
 
 🏁 🍇
   🍩🙂🔶🎅🎁
-  🍰 list 🍨🐚🔡
-  🍮 list 🔷🔶💊🍨🐚🔡🐸
-  😀 🔡 🐔 list ' <Number> '
+  🍰 ' <Variable> ' 🍨🐚🔡
+  🍮 ' <Variable> ' 🔷🔶💊🍨🐚🔡🐸
+  😀 🔡 🐔 ' <Variable> ' ' <Number> '
 🍉
 '
 |
 # tests/compilation/protocolClass.emojic
 #
 '🐊 💡 🍇
-  🐖 🔦 degree 🚀
+  🐖 🔦 ' <Variable> ' 🚀
 🍉
 
 🐊 📞 🍇
-  🐖 📞 number 🔡
+  🐖 📞 ' <Variable> ' 🔡
   🐖 🔙 ➡️ 🔡
 🍉
 
@@ -1125,12 +1130,12 @@ grammar Emojicode::Grammar
     😀 🔤This method is never called🔤
   🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using cellular network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using cellular network to call 🔤 ' <Variable> ' 🍪
   🍉
 
   🐖 🔙➡️ 🔡 🍇
@@ -1143,8 +1148,8 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤From a landline, calling 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤From a landline, calling 🔤 ' <Variable> ' 🍪
   🍉
 
   🐖 🔙➡️ 🔡 🍇
@@ -1157,27 +1162,27 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on flashlight at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on flashlight at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
 🐇 🥊 🍇
-  🐇🐖 💡 lightEmitting 💡 🍇
-    🔦 lightEmitting ' <Number> '
+  🐇🐖 💡 ' <Variable> ' 💡 🍇
+    🔦 ' <Variable> ' ' <Number> '
   🍉
 
-  🐇🐖 📞 phoneCapabilities 📞 🍇
-    📞 phoneCapabilities 🔤2929294757🔤
-    😀 🔙phoneCapabilities
+  🐇🐖 📞 ' <Variable> ' 📞 🍇
+    📞 ' <Variable> ' 🔤2929294757🔤
+    😀 🔙' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 iphone 🔷📱🆕
+  🍦 ' <Variable> ' 🔷📱🆕
 
-  🍩💡🥊 iphone
-  🍩📞🥊 iphone
+  🍩💡🥊 ' <Variable> '
+  🍩📞🥊 ' <Variable> '
   🍩📞🥊 🔷☎️🆕
   🍩💡🥊 🔷🔦🆕
 🍉
@@ -1194,53 +1199,53 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/castGenericValueType.emojic
 #
-'🕊 🥛🐚 T ⚪️ 🍇
-  🍰 paywall 👌
-  🍰 value T
+'🕊 🥛🐚 ' <Variable> ' ⚪️ 🍇
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' ' <Variable> '
 
-  🐈 🆕 🍼 value T 🍇
-    🍮paywall 👎
+  🐈 🆕 🍼 ' <Variable> ' ' <Variable> ' 🍇
+    🍮' <Variable> ' 👎
   🍉
 
-  🐖 🥔 ➡️ T 🍇
-    🍎 value
+  🐖 🥔 ➡️ ' <Variable> ' 🍇
+    🍎 ' <Variable> '
   🍉
 🍉
 
-🕊 🦑🐚 T ⚪️ 🍇
-  🍰 a T
-  🍰 b T
+🕊 🦑🐚 ' <Variable> ' ⚪️ 🍇
+  🍰 ' <Variable> ' ' <Variable> '
+  🍰 ' <Variable> ' ' <Variable> '
 
-  🐈 🆕 🍼 a T 🍼 b T 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' ' <Variable> ' 🍼 ' <Variable> ' ' <Variable> ' 🍇🍉
 
-  🐖 👈 ➡️ T 🍇
-    🍎 a
+  🐖 👈 ➡️ ' <Variable> ' 🍇
+    🍎 ' <Variable> '
   🍉
 
-  🐖 👉 ➡️ T 🍇
-    🍎 b
+  🐖 👉 ➡️ ' <Variable> ' 🍇
+    🍎 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍰 a ⚪️
-  🍮 a 🔷🥛🐚🚂🆕 ' <Number> '
-  🍰 b ⚪️
-  🍮 b 🔷🥛🐚🔡🆕 🔤moment🔤
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🥛🐚🚂🆕 ' <Number> '
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🥛🐚🔡🆕 🔤moment🔤
 
-  😀 🔡 🥔 🍺 🔲 a 🥛🐚🚂 ' <Number> '
-  😀 🥔 🍺 🔲 b 🥛🐚🔡
+  😀 🔡 🥔 🍺 🔲 ' <Variable> ' 🥛🐚🚂 ' <Number> '
+  😀 🥔 🍺 🔲 ' <Variable> ' 🥛🐚🔡
 
-  🍰 c ⚪️
-  🍮 c 🔷🦑🐚🔡🆕 🔤rest🔤 🔤assured🔤
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🦑🐚🔡🆕 🔤rest🔤 🔤assured🔤
 
-  😀 👈 🍺 🔲 c 🦑🐚🔡
-  😀 👉 🍺 🔲 c 🦑🐚🔡
+  😀 👈 🍺 🔲 ' <Variable> ' 🦑🐚🔡
+  😀 👉 🍺 🔲 ' <Variable> ' 🦑🐚🔡
 
-  🍊🍦 as 🔲 a 🥛🐚🔡 🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🥛🐚🔡 🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 b 🥛🐚🚂 🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🥛🐚🚂 🍇
     😀 🔤Oops🔤
   🍉
 🍉
@@ -1249,135 +1254,135 @@ grammar Emojicode::Grammar
 # tests/compilation/valueTypeRemoteAdditional.emojic
 #
 '🕊 🏠 🍇
-  🍰 street 🔡
-  🍰 houseNumber 🔡
-  🍰 city 🔡
-  🍰 zipCode 🔡
-  🍰 state 🔡
-  🍰 country 🔡
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 street 🔡 🍼 houseNumber 🔡 🍼 city 🔡 🍼 zipCode 🔡 🍼 state 🔡 🍼 country 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 😀 🍇
-    😀 street
-    😀 houseNumber
-    😀 city
-    😀 zipCode
-    😀 state
-    😀 country
+    😀 ' <Variable> '
+    😀 ' <Variable> '
+    😀 ' <Variable> '
+    😀 ' <Variable> '
+    😀 ' <Variable> '
+    😀 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 apple 🔷🏠🆕 🔤Infinite Loop🔤 🔤1🔤 🔤Cupertino🔤 🔤95014🔤 🔤California🔤 🔤USA🔤
-  😀 apple
+  🍦 ' <Variable> ' 🔷🏠🆕 🔤Infinite Loop🔤 🔤1🔤 🔤Cupertino🔤 🔤95014🔤 🔤California🔤 🔤USA🔤
+  😀 ' <Variable> '
 
-  🍰 something ⚪️
-  🍮 something 🔷🏠🆕 🔤Dr. Karl Renner-Ring🔤 🔤3🔤 🔤Wien🔤 🔤1017🔤 🔤Wien🔤 🔤Österreich🔤
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🏠🆕 🔤Dr. Karl Renner-Ring🔤 🔤3🔤 🔤Wien🔤 🔤1017🔤 🔤Wien🔤 🔤Österreich🔤
 
-  🍰 building 🍬🏠
-  🍮 building 🔲 something 🏠
-  😀🍺building
+  🍰 ' <Variable> ' 🍬🏠
+  🍮 ' <Variable> ' 🔲 ' <Variable> ' 🏠
+  😀🍺' <Variable> '
 
-  🍮 building 🔷🏠🆕 🔤Boulevard du Parc🔤 🔤1🔤 🔤Serris/Coupvray🔤 🔤77700🔤 🔤Thorigny-sur-Marne🔤 🔤France🔤
-  🍮 something building
-  😀🍺🔲 something 🏠
+  🍮 ' <Variable> ' 🔷🏠🆕 🔤Boulevard du Parc🔤 🔤1🔤 🔤Serris/Coupvray🔤 🔤77700🔤 🔤Thorigny-sur-Marne🔤 🔤France🔤
+  🍮 ' <Variable> ' ' <Variable> '
+  😀🍺🔲 ' <Variable> ' 🏠
 🍉
 '
 |
 # tests/compilation/valueTypeMutate.emojic
 #
 '🕊 🌼 🍇
-  🍰 text 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 text 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🌵 🍇
-    😀 text
+    😀 ' <Variable> '
   🍉
 
   🖍 🐖 😣 🍇
-    🍮 text 🔤Voyager🔤
+    🍮 ' <Variable> ' 🔤Voyager🔤
   🍉
 
-  🖍 🐖 😋 string 🔡 🍇
-    🍮 text string
+  🖍 🐖 😋 ' <Variable> ' 🔡 🍇
+    🍮 ' <Variable> ' ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 discovery 🔷🌼🆕 🔤Discovery🔤
-  🍮 discoveryCopy discovery
-  🌵 discoveryCopy
-  😣 discoveryCopy
-  🌵 discoveryCopy
-  🌵 discovery
-  🍮 discoveryCopyCopy discoveryCopy
-  🌵 discoveryCopyCopy
-  😋 discoveryCopyCopy 🔤Enterprise🔤
-  🌵 discoveryCopyCopy
-  🌵 discoveryCopy
-  🌵 discovery
+  🍦 ' <Variable> ' 🔷🌼🆕 🔤Discovery🔤
+  🍮 ' <Variable> ' ' <Variable> '
+  🌵 ' <Variable> '
+  😣 ' <Variable> '
+  🌵 ' <Variable> '
+  🌵 ' <Variable> '
+  🍮 ' <Variable> ' ' <Variable> '
+  🌵 ' <Variable> '
+  😋 ' <Variable> ' 🔤Enterprise🔤
+  🌵 ' <Variable> '
+  🌵 ' <Variable> '
+  🌵 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/conditionalProduce.emojic
 #
 '🕊 🥙 🍇
-  🍰 tomatoes 🚂
-  🍰 salad 👌
-  🍰 chicken 🚂
-  🍰 weight 🚂
+  🍰 ' <Variable> ' 🚂
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 🚂
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 tomatoes 🚂 🍼 salad 👌 🍼 chicken 🚂 🍼 weight 🚂 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🚂 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🚂 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤You ordered a 🔤 🔡 weight ' <Number> ' 🔤kg pita filled with 🔤 🔡 tomatoes ' <Number> ' 🔤 tomatoes and 🔤 🔡 chicken ' <Number> ' 🔤g of chicken.🔤 🍪
-    🍊 salad 🍇
+    😀 🍪 🔤You ordered a 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤kg pita filled with 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤 tomatoes and 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤g of chicken.🔤 🍪
+    🍊 ' <Variable> ' 🍇
       😀 🔤There’s also salad in your pita!🔤
     🍉
   🍉
 🍉
 
 🏁 🍇
-  🍰 a 🍬🔡
-  🍰 b 🍬🔡
-  🍰 c 🍬🔡
-  🍰 d 🍬🥙
-  🍰 e 🍬🥙
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🥙
+  🍰 ' <Variable> ' 🍬🥙
 
-  🍮 a 🔤Did🔤
-  🍮 b ⚡️
-  🍮 c 🔤hear🔤
-  🍮 d 🔷🥙🆕 ' <Number> ' 👎 ' <Number> ' ' <Number> '
-  🍮 e ⚡️
+  🍮 ' <Variable> ' 🔤Did🔤
+  🍮 ' <Variable> ' ⚡️
+  🍮 ' <Variable> ' 🔤hear🔤
+  🍮 ' <Variable> ' 🔷🥙🆕 ' <Number> ' 👎 ' <Number> ' ' <Number> '
+  🍮 ' <Variable> ' ⚡️
 
-  🍊🍦 string a 🍇
-    😀 string
+  🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
   🍓 🍇
     😀 🔤no🔤
   🍉
-  🍊🍦 string b 🍇
-    😀 string
+  🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
   🍓 🍇
     😀 🔤no🔤
   🍉
-  🍊🍦 string c 🍇
-    😀 string
+  🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
   🍓 🍇
     😀 🔤no🔤
   🍉
-  🍊🍦 pita d 🍇
-    😀 pita
+  🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
   🍓 🍇
     😀 🔤no🔤
   🍉
-  🍊🍦 pita e 🍇
-    😀 pita
+  🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
   🍓 🍇
     😀 🔤no🔤
@@ -1388,51 +1393,51 @@ grammar Emojicode::Grammar
 # tests/compilation/classSubInstanceVar.emojic
 #
 '🐇 🙈 🍇
-	🍰 weight 🚂
+	🍰 ' <Variable> ' 🚂
 
-	🐈 🆕 🍼 weight 🚂 🍇🍉
+	🐈 🆕 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 🏋️ 🍇
-    😀🔡 weight ' <Number> '
+    😀🔡 ' <Variable> ' ' <Number> '
   🍉
 🍉
 
 🐇 🐰 🙈 🍇
-  🍰 earLength 🚂
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 earLength 🚂 weight 🚂 🍇
-    🐐🆕 weight
+  🐈 🆕 🍼 ' <Variable> ' 🚂 ' <Variable> ' 🚂 🍇
+    🐐🆕 ' <Variable> '
   🍉
 
   🐖 📏 🍇
-    😀🔡 earLength ' <Number> '
+    😀🔡 ' <Variable> ' ' <Number> '
   🍉
 🍉
 
 
 🏁 🍇
-	🍦 rabbit 🔷🐰🆕 ' <Number> ' ' <Number> '
-  🍦 animal 🔷🙈🆕 ' <Number> '
-  🏋️ rabbit
-  📏 rabbit
-  🏋️ animal
+	🍦 ' <Variable> ' 🔷🐰🆕 ' <Number> ' ' <Number> '
+  🍦 ' <Variable> ' 🔷🙈🆕 ' <Number> '
+  🏋️ ' <Variable> '
+  📏 ' <Variable> '
+  🏋️ ' <Variable> '
 🍉
 '
 |
 # tests/compilation/chaining.emojic
 #
 '🏁 🍇
-  🍰 word 🍬🔡
-  🍮 word 🔤I said a hip hop🔤
+  🍰 ' <Variable> ' 🍬🔡
+  🍮 ' <Variable> ' 🔤I said a hip hop🔤
 
-  🍻 😀 word
-  🍻 😀 🍻 📝 word 🔟,
+  🍻 😀 ' <Variable> '
+  🍻 😀 🍻 📝 ' <Variable> ' 🔟,
 
-  🍰 nothingness 🍬🔡
-  🍮 nothingness ⚡️
+  🍰 ' <Variable> ' 🍬🔡
+  🍮 ' <Variable> ' ⚡️
 
-  🍻 😀 nothingness
-  🍻 😀 🍻 📝 nothingness 🔟,
+  🍻 😀 ' <Variable> '
+  🍻 😀 🍻 📝 ' <Variable> ' 🔟,
 
   😀 🔤Thanks for your attention.🔤
 🍉
@@ -1441,24 +1446,24 @@ grammar Emojicode::Grammar
 # tests/compilation/protocolSelfGeneric.emojic
 #
 '🐊 💿 🍇
-  🐖 🎶 dd 🐕
+  🐖 🎶 ' <Variable> ' 🐕
 🍉
 
 🐇 🌗 🍇
   🐊 💿
 
-  🍰 secret 🚂
+  🍰 ' <Variable> ' 🚂
 
   🐈 🆕 @secret 🚂 🍇
-    🍮 secret @secret
+    🍮 ' <Variable> ' @secret
   🍉
 
   🐖 💱 ➡️ 🚂 🍇
-    🍎 secret
+    🍎 ' <Variable> '
   🍉
 
-  🐖 🎶 dd 🌗 🍇
-    🍊 😛 💱 🐕 💱 dd 🍇
+  🐖 🎶 ' <Variable> ' 🌗 🍇
+    🍊 😛 💱 🐕 💱 ' <Variable> ' 🍇
       😀 🔤GLEICH🔤
     🍉
     🍓 🍇
@@ -1472,12 +1477,12 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🎶 dd 🌵 🍇🍉
+  🐖 🎶 ' <Variable> ' 🌵 🍇🍉
 🍉
 
 🐇 📻 🍇
-  🐇🐖 🏀 🐚A💿 a1 A a2 A 🍇
-    🎶 a1 a2
+  🐇🐖 🏀 🐚A💿 ' <Variable> ' ' <Variable> ' ' <Variable> ' ' <Variable> ' 🍇
+    🎶 ' <Variable> ' ' <Variable> '
   🍉
 🍉
 
@@ -1489,43 +1494,43 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/genericProtocolValueType.emojic
 #
-'🐊 🦀🐚Key⚪️🐚Element⚪️ 🍇
-	🐖 🦀 key Key ➡️ Element
+'🐊 🦀🐚' <Variable> '⚪️🐚' <Variable> '⚪️ 🍇
+	🐖 🦀 ' <Variable> ' ' <Variable> ' ➡️ ' <Variable> '
 🍉
 
-🕊 🐾 🐚Element⚪️ 🍇
-	🐊 🦀🐚🔡🐚Element
+🕊 🐾 🐚' <Variable> '⚪️ 🍇
+	🐊 🦀🐚🔡🐚' <Variable> '
 
 	🐈 🆕 🍇
 
 	🍉
 
-	🐖 🦀 key 🔡 ➡️ Element 🍇
+	🐖 🦀 ' <Variable> ' 🔡 ➡️ ' <Variable> ' 🍇
 		🍎 ' <Number> '
 	🍉
 🍉
 
 🏁 🍇
-  🍰 a 🦀🐚🔡🐚🚂
-  🍮 a 🔷🐾🐚🚂🆕
+  🍰 ' <Variable> ' 🦀🐚🔡🐚🚂
+  🍮 ' <Variable> ' 🔷🐾🐚🚂🆕
 
-  😀 🔡 🦀 a 🔤asdfsadf🔤 ' <Number> '
+  😀 🔡 🦀 ' <Variable> ' 🔤asdfsadf🔤 ' <Number> '
 🍉
 '
 |
 # tests/compilation/captureTypeMethod.emojic
 #
 '🐇 🕵 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🔑🐈 🆕 🍼 name 🔡 🍇🍉
+  🔑🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐇🐖 🥚 ➡️  🕵 🍇
     🍎 🔷🐕🆕 🔤George🔤
   🍉
 
   🐖 😀 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
@@ -1536,10 +1541,10 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 hatchOut 🌶🍩🥚🕵
-  😀 🍭 hatchOut
-  🍦 happyNewYear 🌶🍩🎆📅
-  🍭 happyNewYear
+  🍦 ' <Variable> ' 🌶🍩🥚🕵
+  😀 🍭 ' <Variable> '
+  🍦 ' <Variable> ' 🌶🍩🎆📅
+  🍭 ' <Variable> '
 🍉
 '
 |
@@ -1559,19 +1564,19 @@ grammar Emojicode::Grammar
   🍩🙂🔶🎅🎁
   🍩🙂💧
 
-  🍰 list 🔶🍣🍐🐚🔡
-  🍮 list 🍨 🔤Up🔤 🔤there🔤 🔤in🔤 🔤utopia🔤 🍆
+  🍰 ' <Variable> ' 🔶🍣🍐🐚🔡
+  🍮 ' <Variable> ' 🍨 🔤Up🔤 🔤there🔤 🔤in🔤 🔤utopia🔤 🍆
 🍉
 '
 |
 # tests/compilation/protocolMulti.emojic
 #
 '🐊 💡 🍇
-  🐖 🔦 degree 🚀
+  🐖 🔦 ' <Variable> ' 🚀
 🍉
 
 🐊 📞 🍇
-  🐖 📞 number 🔡
+  🐖 📞 ' <Variable> ' 🔡
 🍉
 
 🕊 📱 🍇
@@ -1580,12 +1585,12 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using cellular network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using cellular network to call 🔤 ' <Variable> ' 🍪
   🍉
 🍉
 
@@ -1595,19 +1600,19 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on spot light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on spot light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using radio network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using radio network to call 🔤 ' <Variable> ' 🍪
   🍉
 🍉
 
 🐇 🥊 🍇
-  🐇🐖 🎇 device 🍱📞💡🍱 🍇
-    📞 device 🔤2929294757🔤
-    🔦 device ' <Number> '
+  🐇🐖 🎇 ' <Variable> ' 🍱📞💡🍱 🍇
+    📞 ' <Variable> ' 🔤2929294757🔤
+    🔦 ' <Variable> ' ' <Number> '
   🍉
 🍉
 
@@ -1652,33 +1657,33 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 a 🍩🙋🐟
-  🍦 b 🍩🙅🐟
-  🍦 c 🍩🙅‍♂️🐟
-  🍦 d 🍩🙋‍♂️🐟
+  🍦 ' <Variable> ' 🍩🙋🐟
+  🍦 ' <Variable> ' 🍩🙅🐟
+  🍦 ' <Variable> ' 🍩🙅‍♂️🐟
+  🍦 ' <Variable> ' 🍩🙋‍♂️🐟
 
-  🍊 🚥 a 🍇
+  🍊 🚥 ' <Variable> ' 🍇
     😀 🔤error🔤
   🍉
   🍓 🍇
     😀 🔤no error🔤
   🍉
 
-  🍊 🚥 b 🍇
+  🍊 🚥 ' <Variable> ' 🍇
     😀 🔤error🔤
   🍉
   🍓 🍇
     😀 🔤no error🔤
   🍉
 
-  🍊 🚥 c 🍇
+  🍊 🚥 ' <Variable> ' 🍇
     😀 🔤error🔤
   🍉
   🍓 🍇
     😀 🔤no error🔤
   🍉
 
-  🍊 🚥 d 🍇
+  🍊 🚥 ' <Variable> ' 🍇
     😀 🔤error🔤
   🍉
   🍓 🍇
@@ -1690,12 +1695,12 @@ grammar Emojicode::Grammar
 # tests/compilation/classOverride.emojic
 #
 '🐇 🐟 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🙋 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
@@ -1732,32 +1737,32 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 a 🔷🐟🆕 🔤Shawn🔤
-  🍦 c 🔷🐡🆕
-  🍦 u 🔷🌕🆕
+  🍦 ' <Variable> ' 🔷🐟🆕 🔤Shawn🔤
+  🍦 ' <Variable> ' 🔷🐡🆕
+  🍦 ' <Variable> ' 🔷🌕🆕
 
-  🙋 a
-  🙋 c
-  🥛 c
-  🙋 u
-  🥛 u
-  💎 u
-  🥞 u
+  🙋 ' <Variable> '
+  🙋 ' <Variable> '
+  🥛 ' <Variable> '
+  🙋 ' <Variable> '
+  🥛 ' <Variable> '
+  💎 ' <Variable> '
+  🥞 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/isNothingness.emojic
 #
 '🕊 🥐 🍇
-  🍰 vegan 👌
-  🍰 filling 🔡
-  🍰 weight 🚂
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 vegan 👌 🍼 filling 🔡 🍼 weight 🚂 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤You ordered a 🔤 🔡 weight ' <Number> ' 🔤kg croissant filled with 🔤 filling 🍪
-    🍊 vegan 🍇
+    😀 🍪 🔤You ordered a 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤kg croissant filled with 🔤 ' <Variable> ' 🍪
+    🍊 ' <Variable> ' 🍇
       😀 🔤The croissant is vegan!🔤
     🍉
   🍉
@@ -1772,35 +1777,35 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍰 a 🍬🔡
-  🍰 b ⚪️
-  🍰 c 🍬🥐
-  🍰 d 🍬🔵
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' ⚪️
+  🍰 ' <Variable> ' 🍬🥐
+  🍰 ' <Variable> ' 🍬🔵
 
-  🍮 b ⚡️
+  🍮 ' <Variable> ' ⚡️
 
-  🍊 ☁️ a 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
     😀 🔤not nothingness🔤
   🍉
 
-  🍊 ☁️ b 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
     😀 🔤not nothingness🔤
   🍉
 
-  🍊 ☁️ c 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
     😀 🔤not nothingness🔤
   🍉
 
-  🍊 ☁️ d 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
@@ -1814,33 +1819,33 @@ grammar Emojicode::Grammar
     😀 🔤not nothingness🔤
   🍉
 
-  🍮 a 🔤test🔤
-  🍮 b ' <Number> '
-  🍮 c 🔷🥐🆕 👍 🔤vanilla🔤 ' <Number> '
-  🍮 d 🔤234🔤
+  🍮 ' <Variable> ' 🔤test🔤
+  🍮 ' <Variable> ' ' <Number> '
+  🍮 ' <Variable> ' 🔷🥐🆕 👍 🔤vanilla🔤 ' <Number> '
+  🍮 ' <Variable> ' 🔤234🔤
 
-  🍊 ☁️ a 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
     😀 🔤not nothingness🔤
   🍉
 
-  🍊 ☁️ b 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
     😀 🔤not nothingness🔤
   🍉
 
-  🍊 ☁️ c 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
     😀 🔤not nothingness🔤
   🍉
 
-  🍊 ☁️ d 🍇
+  🍊 ☁️ ' <Variable> ' 🍇
     😀 🔤nothingness🔤
   🍉
   🍓 🍇
@@ -1859,43 +1864,43 @@ grammar Emojicode::Grammar
 # tests/compilation/captureMethod.emojic
 #
 '🐇 🕵 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
-  🐖 🏷 neuerName 🔡 🍇
-    🍮 name neuerName
+  🐖 🏷 ' <Variable> ' 🔡 🍇
+    🍮 ' <Variable> ' ' <Variable> '
   🍉
 
   🐖 😀 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
 
 🏁 🍇
-  🍦 append 🌶📝 🔤Florence🔤
-  😀 🍭 append 🔟!
-  😀 🍭 append 🔟?
+  🍦 ' <Variable> ' 🌶📝 🔤Florence🔤
+  😀 🍭 ' <Variable> ' 🔟!
+  😀 🍭 ' <Variable> ' 🔟?
 
-	🍦 d 🔷🕵🆕 🔤Miss Marple🔤
-	🍦 changeName 🌶🏷 d
-	🍦 printName 🌶😀d
-	🍭 printName
-	🍭 changeName 🔤Hercule Poirot🔤
-	🍭 printName
+	🍦 ' <Variable> ' 🔷🕵🆕 🔤Miss Marple🔤
+	🍦 ' <Variable> ' 🌶🏷 d
+	🍦 ' <Variable> ' 🌶😀d
+	🍭 ' <Variable> '
+	🍭 ' <Variable> ' 🔤Hercule Poirot🔤
+	🍭 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/castAny.emojic
 #
 '🐇 🐟 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🙋 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
@@ -1910,31 +1915,31 @@ grammar Emojicode::Grammar
 🍉
 
 🕊 🥐 🍇
-  🍰 vegan 👌
-  🍰 filling 🔡
-  🍰 weight 🚂
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 vegan 👌 🍼 filling 🔡 🍼 weight 🚂 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤You ordered a 🔤 🔡 weight ' <Number> ' 🔤kg croissant filled with 🔤 filling 🍪
-    🍊 vegan 🍇
+    😀 🍪 🔤You ordered a 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤kg croissant filled with 🔤 ' <Variable> ' 🍪
+    🍊 ' <Variable> ' 🍇
       😀 🔤The croissant is vegan!🔤
     🍉
   🍉
 🍉
 
 🕊 🥙 🍇
-  🍰 tomatoes 🚂
-  🍰 salad 👌
-  🍰 chicken 🚂
-  🍰 weight 🚂
+  🍰 ' <Variable> ' 🚂
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 🚂
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 tomatoes 🚂 🍼 salad 👌 🍼 chicken 🚂 🍼 weight 🚂 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🚂 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🚂 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤You ordered a 🔤 🔡 weight ' <Number> ' 🔤kg pita filled with 🔤 🔡 tomatoes ' <Number> ' 🔤 tomatoes and 🔤 🔡 chicken ' <Number> ' 🔤g of chicken.🔤 🍪
-    🍊 salad 🍇
+    😀 🍪 🔤You ordered a 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤kg pita filled with 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤 tomatoes and 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤g of chicken.🔤 🍪
+    🍊 ' <Variable> ' 🍇
       😀 🔤There’s also salad in your pita!🔤
     🍉
   🍉
@@ -1961,49 +1966,49 @@ grammar Emojicode::Grammar
 
 
 🏁 🍇
-  🍰 a ⚪️
-  🍮 a 🔷🐟🆕 🔤Shawn🔤
-  🍰 b ⚪️
-  🍮 b 🔤Jane🔤
-  🍰 c ⚪️
-  🍮 c 🔷🥐🆕 👎 🔤chocolate🔤 ' <Number> '
-  🍰 d ⚪️
-  🍮 d ' <Number> '
-  🍰 e ⚪️
-  🍮 e 🔷🐡🆕
-  🍰 f ⚪️
-  🍮 f 🔷⏰🥐
-  🍰 g ⚪️
-  🍮 g 🔷🥙🆕 ' <Number> ' 👎 ' <Number> ' ' <Number> '
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🐟🆕 🔤Shawn🔤
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔤Jane🔤
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🥐🆕 👎 🔤chocolate🔤 ' <Number> '
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' ' <Number> '
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🐡🆕
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷⏰🥐
+  🍰 ' <Variable> ' ⚪️
+  🍮 ' <Variable> ' 🔷🥙🆕 ' <Number> ' 👎 ' <Number> ' ' <Number> '
 
-  🙋 🍺 🔲 a 🐟
-  😀 🍺 🔲 b 🔡
-  😀 🍺 🔲 c 🥐
-  😀 🔡 🍺 🔲 d 🚂 ' <Number> '
-  🙋 🍺 🔲 e 🐟
-  🥛 🍺 🔲 e 🐡
-  😀 🔡 🍺 🔲 f ⏰
-  😀 🍺 🔲 g 🥙
+  🙋 🍺 🔲 ' <Variable> ' 🐟
+  😀 🍺 🔲 ' <Variable> ' 🔡
+  😀 🍺 🔲 ' <Variable> ' 🥐
+  😀 🔡 🍺 🔲 ' <Variable> ' 🚂 ' <Number> '
+  🙋 🍺 🔲 ' <Variable> ' 🐟
+  🥛 🍺 🔲 ' <Variable> ' 🐡
+  😀 🔡 🍺 🔲 ' <Variable> ' ⏰
+  😀 🍺 🔲 ' <Variable> ' 🥙
 
-  🍊🍦 as 🔲 a 🔡  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🔡  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 b 🐟  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🐟  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 c 🐟  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🐟  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 a 🐡  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🐡  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 a 🥐  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🥐  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 f 🥐  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' 🥐  🍇
     😀 🔤Oops🔤
   🍉
-  🍊🍦 as 🔲 c ⏰  🍇
+  🍊🍦 ' <Variable> ' 🔲 ' <Variable> ' ⏰  🍇
     😀 🔤Oops🔤
   🍉
 🍉
@@ -2040,29 +2045,29 @@ grammar Emojicode::Grammar
 # tests/compilation/unwrap.emojic
 #
 '🏁 🍇
-  🍰 a 🍬🔡
-  🍰 b 🍬🔡
-  🍰 c 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
 
-  🍮 a 🔤Did🔤
-  🍮 b ⚡️
-  🍮 c 🔤hear🔤
+  🍮 ' <Variable> ' 🔤Did🔤
+  🍮 ' <Variable> ' ⚡️
+  🍮 ' <Variable> ' 🔤hear🔤
 
-  😀 🍺a
-  😀 🍺c
+  😀 🍺' <Variable> '
+  😀 🍺' <Variable> '
 🍉
 '
 |
 # tests/compilation/closureBasic.emojic
 #
 '🏁 🍇
-  🍦 greet 🍇 name 🔡
-    😀 🍪🔤It is a plesaure to welcome the honorable 🔤 name🍪
+  🍦 ' <Variable> ' 🍇 ' <Variable> ' 🔡
+    😀 🍪🔤It is a plesaure to welcome the honorable 🔤 ' <Variable> '🍪
   🍉
 
-  🍭 greet 🔤Hans🔤
-  🍭 greet 🔤Gustav🔤
-  🍭 greet 🔤Linda🔤
+  🍭 ' <Variable> ' 🔤Hans🔤
+  🍭 ' <Variable> ' 🔤Gustav🔤
+  🍭 ' <Variable> ' 🔤Linda🔤
 
   😀 🔤End of program🔤
 🍉
@@ -2071,63 +2076,63 @@ grammar Emojicode::Grammar
 # tests/compilation/callable.emojic
 #
 '🏁 🍇
-  🍦 string 🔤Krass🔤
+  🍦 ' <Variable> ' 🔤Krass🔤
 
-  🍦 append 🌶 📝 string
+  🍦 ' <Variable> ' 🌶 📝 ' <Variable> '
 
-  😀 🍭 append 🔟!
-  😀 🍭 append 🔟?
+  😀 🍭 ' <Variable> ' 🔟!
+  😀 🍭 ' <Variable> ' 🔟?
 
-  🍦 greet 🍇 name 🔡 ➡️ 🔡
-    😀 🍪🔤Wir grüßen den Ehrwürdigen 🔤 name🍪
+  🍦 ' <Variable> ' 🍇 ' <Variable> ' 🔡 ➡️ 🔡
+    😀 🍪🔤Wir grüßen den Ehrwürdigen 🔤 ' <Variable> '🍪
 
-    🍮 out 🔤🔤
+    🍮 ' <Variable> ' 🔤🔤
 
-    🔂 i️ ⏩ ➖ 🐔 name ' <Number> ' ' <Number> ' 🍇
-      🍮 out 📝 out 🍺🐽 name i
+    🔂 i️ ⏩ ➖ 🐔 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🍮 ' <Variable> ' 📝 ' <Variable> ' 🍺🐽 ' <Variable> ' ' <Variable> '
     🍉
-    🍎 out
+    🍎 ' <Variable> '
   🍉
 
-  😀 🍭 greet 🔤Hans🔤
+  😀 🍭 ' <Variable> ' 🔤Hans🔤
 
-  🍦 detektiv 🔷🕵🐑 🔤Karate Kid🔤
+  🍦 ' <Variable> ' 🔷🕵🐑 🔤Karate Kid🔤
 
-  🍦 derNameFunktion 💳 detektiv
-  🏷 detektiv 🔤Kung Fu Panda🔤
+  🍦 ' <Variable> ' 💳 ' <Variable> '
+  🏷 ' <Variable> ' 🔤Kung Fu Panda🔤
 
-  😀 🍭 derNameFunktion
+  😀 🍭 ' <Variable> '
 
   🍦 walfriedGrüßer 🍩🙋🍤 🔤Walfried🔤
   😀 🍭 walfriedGrüßer ' <Number> '
   😀 🍭 walfriedGrüßer ' <Number> '
   😀 🍭 walfriedGrüßer ' <Number> '
 
-  🍦 captured 🌶🍩🎂⚽️
-  😀 🍭 captured
+  🍦 ' <Variable> ' 🌶🍩🎂⚽️
+  😀 🍭 ' <Variable> '
 
-  🍦 capturedITS 🌶🔡' <Number> '
-  😀 🍭 capturedITS ' <Number> '
-  😀 🍭 capturedITS ' <Number> '
+  🍦 ' <Variable> ' 🌶🔡' <Number> '
+  😀 🍭 ' <Variable> ' ' <Number> '
+  😀 🍭 ' <Variable> ' ' <Number> '
 
-  🍦 capturedPI 🌶🍩⚾️🚀
-  😀 🔡 🍭 capturedPI ' <Number> '
+  🍦 ' <Variable> ' 🌶🍩⚾️🚀
+  😀 🔡 🍭 ' <Variable> ' ' <Number> '
 🍉
 
 🐇 🕵 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
   🐈 🐑 @name 🔡 🍇
-    🍮 name @name
+    🍮 ' <Variable> ' @name
   🍉
 
-  🐖 🏷 neuerName 🔡 🍇
-    🍮 name neuerName
+  🐖 🏷 ' <Variable> ' 🔡 🍇
+    🍮 ' <Variable> ' ' <Variable> '
   🍉
 
   🐖 💳 ➡️ 🍇➡️🔡🍉 🍇
     🍎 🍇 ➡️ 🔡
-      🍎 name
+      🍎 ' <Variable> '
     🍉
   🍉
 
@@ -2140,12 +2145,12 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 🍤 🍇
-  🐇🐖 🙋 name 🔡 ➡️ 🍇🚂➡️🔡🍉 🍇
-    🍎 🍇 hour 🚂 ➡️ 🔡
-      🍊 😛 hour ' <Number> ' 🍇
-        🍎 🍪 🔤Have a good lunch, 🔤 name🍪
+  🐇🐖 🙋 ' <Variable> ' 🔡 ➡️ 🍇🚂➡️🔡🍉 🍇
+    🍎 🍇 ' <Variable> ' 🚂 ➡️ 🔡
+      🍊 😛 ' <Variable> ' ' <Number> ' 🍇
+        🍎 🍪 🔤Have a good lunch, 🔤 ' <Variable> '🍪
       🍉
-      🍎 🍪 🔤Hello, 🔤 name🍪
+      🍎 🍪 🔤Hello, 🔤 ' <Variable> '🍪
     🍉
   🍉
 🍉
@@ -2166,16 +2171,16 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 a 🔷🐟🆕
-  🍦 b 🔷🐟🆒
+  🍦 ' <Variable> ' 🔷🐟🆕
+  🍦 ' <Variable> ' 🔷🐟🆒
 
-  🍊 🚥 a 🍇
+  🍊 🚥 ' <Variable> ' 🍇
     😀 🔤error🔤
   🍉
   🍓 🍇
     😀 🔤not error🔤
   🍉
-  🍊 🚥 b 🍇
+  🍊 🚥 ' <Variable> ' 🍇
     😀 🔤error🔤
   🍉
   🍓 🍇
@@ -2186,26 +2191,26 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/generics.emojic
 #
-'🐇 🎁 🐚 T 🔵 🍇
+'🐇 🎁 🐚 ' <Variable> ' 🔵 🍇
 
-  🍰 etwas T
+  🍰 ' <Variable> ' ' <Variable> '
 
   🐈 ✂️ =etwas T 🍇
-    🍮 etwas =etwas
+    🍮 ' <Variable> ' =etwas
   🍉
 
-  🐖 🎉 ➡️  T 🍇
-    🍎 etwas
+  🐖 🎉 ➡️  ' <Variable> ' 🍇
+    🍎 ' <Variable> '
   🍉
 🍉
 
-🐇 🌟 🐚 A 🔵 🎁 🐚 A 🍇
+🐇 🌟 🐚 ' <Variable> ' 🔵 🎁 🐚 ' <Variable> ' 🍇
 
-  ✒️ 🐖 🎉 ➡️ A 🍇
+  ✒️ 🐖 🎉 ➡️ ' <Variable> ' 🍇
     🍎 🐿 🎉
   🍉
 
-  🐖 🐌 ➡️ 🌟 🐚 A 🍇
+  🐖 🐌 ➡️ 🌟 🐚 ' <Variable> ' 🍇
     🍎 🐕
   🍉
 
@@ -2220,37 +2225,37 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 kiste 🔷 🌟🐚🔡 ✂️ 🔤Hallo🔤
+  🍦 ' <Variable> ' 🔷 🌟🐚🔡 ✂️ 🔤Hallo🔤
 
-  😀 🎉 kiste
-  😀 🎉 🐌 kiste
+  😀 🎉 ' <Variable> '
+  😀 🎉 🐌 ' <Variable> '
 
-  🍦 c  🔷☑️ ✂️ 🔤Guten abend🔤
-  😀 🎉 c
-  😀 🎉 🐌 c
+  🍦 ' <Variable> '  🔷☑️ ✂️ 🔤Guten abend🔤
+  😀 🎉 ' <Variable> '
+  😀 🎉 🐌 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/selfInDeclaration.emojic
 #
 '🐊 😛 🍇
-	🐖 😛 other 🐕 ➡️ 👌
+	🐖 😛 ' <Variable> ' 🐕 ➡️ 👌
 🍉
 
 🐇 🐾 🍇
 	🐊 😛
-	🍰 name 🔡
+	🍰 ' <Variable> ' 🔡
 
 	🐈 🆕 @name 🔡 🍇
-		🍮 name @name
+		🍮 ' <Variable> ' @name
 	🍉
 
 	🐖 🏷 ➡️ 🔡 🍇
-		🍎 name
+		🍎 ' <Variable> '
 	🍉
 
-	🐖 😛 other 🐕 ➡️ 👌 🍇
-		🍎 😛 name 🏷 other
+	🐖 😛 ' <Variable> ' 🐕 ➡️ 👌 🍇
+		🍎 😛 ' <Variable> ' 🏷 ' <Variable> '
 	🍉
 🍉
 
@@ -2259,10 +2264,10 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 a 🔷🐻🆕 🔤Hans🔤
-  🍦 b 🔷🐻🆕 🔤Hans🔤
+  🍦 ' <Variable> ' 🔷🐻🆕 🔤Hans🔤
+  🍦 ' <Variable> ' 🔷🐻🆕 🔤Hans🔤
 
-  🍊 😛 a b 🍇
+  🍊 😛 ' <Variable> ' ' <Variable> ' 🍇
     😀 🔤Gleich🔤
   🍉
 🍉
@@ -2277,17 +2282,17 @@ grammar Emojicode::Grammar
 🕊 🍔 🍇
   🐊 💷
 
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Burger name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Burger name: 🔤 ' <Variable> ' 🍪
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 
   🐖 💷 ➡️ 💷 🍇
@@ -2298,25 +2303,25 @@ grammar Emojicode::Grammar
 🕊 🍕 🍇
   🐊 💷
 
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
-  🍰 extraLarge 👌
-  🍰 extraHot 👌
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 👌
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍼 extraHot 👌 🍼 extraLarge 👌 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 👌 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Pizza  name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Pizza  name: 🔤 ' <Variable> ' 🍪
     🍉
-    🍊 extraLarge 🍇
+    🍊 ' <Variable> ' 🍇
       😀 🔤is extra large🔤
     🍉
-    🍊 extraHot 🍇
+    🍊 ' <Variable> ' 🍇
       😀 🔤is extra hot🔤
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 
   🐖 💷 ➡️ 💷 🍇
@@ -2325,13 +2330,13 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 burger 🔷🍔🆕 🔤Barbecue burger🔤 🍨 🔤onions🔤 🔤bbq sauce🔤 🍆
-  🍦 notes 💷 burger
+  🍦 ' <Variable> ' 🔷🍔🆕 🔤Barbecue burger🔤 🍨 🔤onions🔤 🔤bbq sauce🔤 🍆
+  🍦 ' <Variable> ' 💷 ' <Variable> '
   😀 notes
 
-  🍦 pizza 🔷🍕🆕 🔤Romana🔤 🍨 🔤tomato🔤 🔤mozzarella🔤 🔤anchovies🔤 🍆 👍 👍
-  🍦 notes2 💷 pizza
-  😀 notes2
+  🍦 ' <Variable> ' 🔷🍕🆕 🔤Romana🔤 🍨 🔤tomato🔤 🔤mozzarella🔤 🔤anchovies🔤 🍆 👍 👍
+  🍦 ' <Variable> ' 💷 ' <Variable> '
+  😀 ' <Variable> '
 🍉
 '
 |
@@ -2357,19 +2362,19 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-	🍦 you 🔷⏰🥞
-  😀 🍪 🔤Your choice of breakfast is 🔤 🔡you 🍪
+	🍦 ' <Variable> ' 🔷⏰🥞
+  😀 🍪 🔤Your choice of breakfast is 🔤 🔡' <Variable> ' 🍪
 
-  🍦 jack 🔷⏰🥐
-  😀 🍪 🔤Jack’s choice of breakfast is 🔤 🔡jack 🍪
+  🍦 ' <Variable> ' 🔷⏰🥐
+  😀 🍪 🔤Jack’s choice of breakfast is 🔤 🔡' <Variable> ' 🍪
 🍉
 '
 |
 # tests/compilation/castToSelf.emojic
 #
 '🐇 🐟 🍇
-  🐇🐖 🙋 a ⚪️ 🍇
-    🙋 🍺 🔲 a 🐕
+  🐇🐖 🙋 ' <Variable> ' ⚪️ 🍇
+    🙋 🍺 🔲 ' <Variable> ' 🐕
   🍉
 
   🔑 🐈 🆕 🍇🍉
@@ -2380,46 +2385,46 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 thatThing 🔷🐟🆕
-  🍩🙋🐟 thatThing
+  🍦 ' <Variable> ' 🔷🐟🆕
+  🍩🙋🐟 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/valueTypeCopySelf.emojic
 #
 '🕊 🍔 🍇
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Burger name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Burger name: 🔤 ' <Variable> ' 🍪
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 
   🐖 🌈 🍇
-    🍦 selfCopy 🐕
-    🍩🦋🍔 selfCopy
+    🍦 ' <Variable> ' 🐕
+    🍩🦋🍔 ' <Variable> '
   🍉
 
   🐖 🍀 🍇
     🍩🦋🍔 🐕
   🍉
 
-  🐇🐖 🦋 burger 🍔 🍇
-    😀 burger
+  🐇🐖 🦋 ' <Variable> ' 🍔 🍇
+    😀 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 burger 🔷🍔🆕 🔤Barbecue burger🔤 🍨 🔤onions🔤 🔤bbq sauce🔤 🍆
-  😀 burger
-  🍀 burger
-  🌈 burger
+  🍦 ' <Variable> ' 🔷🍔🆕 🔤Barbecue burger🔤 🍨 🔤onions🔤 🔤bbq sauce🔤 🍆
+  😀 ' <Variable> '
+  🍀 ' <Variable> '
+  🌈 ' <Variable> '
 🍉
 '
 |
@@ -2444,22 +2449,22 @@ grammar Emojicode::Grammar
 # tests/compilation/babyBottleInitializer.emojic
 #
 '🐇 🐟 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🙋 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
 🐇 🦆 🍇
-  🍰 name 🍬🔡
+  🍰 ' <Variable> ' 🍬🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🙋 🍇
-    😀 🍺 name
+    😀 🍺 ' <Variable> '
   🍉
 🍉
 
@@ -2473,16 +2478,16 @@ grammar Emojicode::Grammar
 # tests/compilation/classSuper.emojic
 #
 '🐇 🐟 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
-  🐖 🥛 liters 🚀 ➡️ 🚀 🍇
-    🍎 ✖️➗ liters ' <Number> ' ' <Number> '
+  🐖 🥛 ' <Variable> ' 🚀 ➡️ 🚀 🍇
+    🍎 ✖️➗ ' <Variable> ' ' <Number> ' ' <Number> '
   🍉
 
   🐖 🙋 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
@@ -2496,31 +2501,31 @@ grammar Emojicode::Grammar
     😀 🔤I’m a blowfish🔤
   🍉
 
-  ✒️ 🐖 🥛 liters 🚀 ➡️ 🚀 🍇
-    🍎 ➕🐿🥛 liters ' <Number> '
+  ✒️ 🐖 🥛 ' <Variable> ' 🚀 ➡️ 🚀 🍇
+    🍎 ➕🐿🥛 ' <Variable> ' ' <Number> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 a 🔷🐟🆕 🔤Shawn🔤
-  🍦 b 🔷🐡🆕
+  🍦 ' <Variable> ' 🔷🐟🆕 🔤Shawn🔤
+  🍦 ' <Variable> ' 🔷🐡🆕
 
-  🙋 a
-  🙋 b
-  😀🔡 🥛 a ' <Number> ' ' <Number> '
-  😀🔡 🥛 b ' <Number> ' ' <Number> '
+  🙋 ' <Variable> '
+  🙋 ' <Variable> '
+  😀🔡 🥛 ' <Variable> ' ' <Number> ' ' <Number> '
+  😀🔡 🥛 ' <Variable> ' ' <Number> ' ' <Number> '
 🍉
 '
 |
 # tests/compilation/valueTypeSelf.emojic
 #
 '🕊 🌼 🍇
-  🍰 number 🚂
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 number 🚂 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 ☄️ ➡️ 🚂 🍇
-    🍎 ✖️ number ' <Number> '
+    🍎 ✖️ ' <Variable> ' ' <Number> '
   🍉
 
   🐖 😀 🍇
@@ -2536,28 +2541,28 @@ grammar Emojicode::Grammar
 # tests/compilation/closureCaptureValueType.emojic
 #
 '🕊 🥐 🍇
-  🍰 vegan 👌
-  🍰 filling 🔡
-  🍰 weight 🚂
+  🍰 ' <Variable> ' 👌
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 vegan 👌 🍼 filling 🔡 🍼 weight 🚂 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 👌 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 🍇🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤You ordered a 🔤 🔡 weight ' <Number> ' 🔤kg croissant filled with 🔤 filling 🍪
-    🍊 vegan 🍇
+    😀 🍪 🔤You ordered a 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤kg croissant filled with 🔤 ' <Variable> ' 🍪
+    🍊 ' <Variable> ' 🍇
       😀 🔤The croissant is vegan!🔤
     🍉
   🍉
 🍉
 
 🏁 🍇
-  🍦 croissantForCharly 🔷🥐🆕 👍 🔤Nutella🔤 ' <Number> '
-  🍦 croissantForJoby 🔷🥐🆕 👍 🔤peanut butter🔤 ' <Number> '
+  🍦 ' <Variable> ' 🔷🥐🆕 👍 🔤Nutella🔤 ' <Number> '
+  🍦 ' <Variable> ' 🔷🥐🆕 👍 🔤peanut butter🔤 ' <Number> '
   🍭 🍇
-    😀 croissantForJoby
-    😀 croissantForCharly
-    🍦 croissantForFrank 🔷🥐🆕 👎 🔤jam🔤 ' <Number> '
-    😀 croissantForFrank
+    😀 ' <Variable> '
+    😀 ' <Variable> '
+    🍦 ' <Variable> ' 🔷🥐🆕 👎 🔤jam🔤 ' <Number> '
+    😀 ' <Variable> '
   🍉
 🍉
 '
@@ -2578,108 +2583,108 @@ grammar Emojicode::Grammar
 # tests/compilation/gcStressTest3.emojic
 #
 '🐇 🍔 🍇
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Burger name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Burger name: 🔤 ' <Variable> ' 🍪
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 🍉
 
 🐇 🍾 🍇
-  🍰 hotness 🚀
-  🍰 flavor 🔡
-  🍰 amount 🚂
+  🍰 ' <Variable> ' 🚀
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 hotness 🚀 🍼 flavor 🔡 🍼 amount 🚂 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🚀 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 🍇
   🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤Sauce 🔤 flavor 🔤 🔤 🔡 amount ' <Number> ' 🔤ml Hot: 🔤 🔡 hotness ' <Number> ' 🍪
+    😀 🍪 🔤Sauce 🔤 ' <Variable> ' 🔤 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤ml Hot: 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
 🐇 📃 🍇
-  🍰 burger 🍔
-  🍰 drink 🍬🔡
-  🍰 sauce 🍬🍾
+  🍰 ' <Variable> ' 🍔
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🍾
 
-  🐈 🆕 🍼 burger 🍔 🍼 drink 🍬🔡 🍼 sauce 🍬🍾 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍔 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍬🍾 🍇
   🍉
 
   🐖 😀 🍇
-    😀 burger
-    🍊🍦 drink drink 🍇
-      😀 🍪 🔤Drink: 🔤 drink 🍪
+    😀 ' <Variable> '
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Drink: 🔤 ' <Variable> ' 🍪
     🍉
-    🍊🍦 sauce sauce 🍇
-      😀 sauce
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 ' <Variable> '
     🍉
   🍉
 
-  🐇🐖 🤒 list 🍨🐚📃 🍇
-    🔂 i ⏩ ' <Number> ' ' <Number> ' 🍇
-      🍦 a 🔷📃🆕 🔷🍔🆕 🍪🔤Double Bacon🔤 🔡 i ' <Number> '🍪 🍨 🔤Bacon🔤 🔤Tomato🔤 🍆 ⚡️  🔷🍾🆕 ' <Number> ' 🍪🔤barbecue🔤 🔡 i ' <Number> '🍪 ' <Number> '
-      🍦 b 🔷📃🆕 🔷🍔🆕 🍪🔤Triple Burger🔤 🔡 i ' <Number> '🍪  🍨 🔤Onion🔤 🔤Salad🔤 🔤Tomato🔤 🍆 🔤Coke🔤 🔷🍾🆕 ' <Number> ' 🍪🔤chilli🔤 🔡 i ' <Number> '🍪 ' <Number> '
-      🍦 c 🔷📃🆕 🔷🍔🆕 🍪🔤Cheeseburger🔤 🔡 i ' <Number> '🍪  🍨 🔤Cheese🔤 🍆 🔤Lemonade🔤 ⚡️
-      🍦 d 🔷📃🆕 🔷🍔🆕 🍪🔤Standard Burger🔤 🔡 i ' <Number> '🍪  🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆 🔤Coke🔤 ⚡️
-      🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-        🐻 list a
+  🐇🐖 🤒 ' <Variable> ' 🍨🐚📃 🍇
+    🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
+      🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Double Bacon🔤 🔡 ' <Variable> ' ' <Number> '🍪 🍨 🔤Bacon🔤 🔤Tomato🔤 🍆 ⚡️  🔷🍾🆕 ' <Number> ' 🍪🔤barbecue🔤 🔡 ' <Variable> ' ' <Number> '🍪 ' <Number> '
+      🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Triple Burger🔤 🔡 ' <Variable> ' ' <Number> '🍪  🍨 🔤Onion🔤 🔤Salad🔤 🔤Tomato🔤 🍆 🔤Coke🔤 🔷🍾🆕 ' <Number> ' 🍪🔤chilli🔤 🔡 ' <Variable> ' ' <Number> '🍪 ' <Number> '
+      🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Cheeseburger🔤 🔡 ' <Variable> ' ' <Number> '🍪  🍨 🔤Cheese🔤 🍆 🔤Lemonade🔤 ⚡️
+      🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Standard Burger🔤 🔡 ' <Variable> ' ' <Number> '🍪  🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆 🔤Coke🔤 ⚡️
+      🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+        🐻 ' <Variable> ' ' <Variable> '
       🍉
-      🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-        🐻 list b
+      🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+        🐻 ' <Variable> ' ' <Variable> '
       🍉
-      🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-        🐻 list c
+      🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+        🐻 ' <Variable> ' ' <Variable> '
       🍉
-      🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-        🐻 list d
+      🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+        🐻 ' <Variable> ' ' <Variable> '
       🍉
     🍉
   🍉
 🍉
 
 🏁 🍇
-  🍦 ordersA 🔷🍨🐚📃🐸
-  🍦 ordersB 🔷🍨🐚📃🐸
-  🍦 ordersC 🔷🍨🐚📃🐸
-  🍦 ordersD 🔷🍨🐚📃🐸
+  🍦 ' <Variable> ' 🔷🍨🐚📃🐸
+  🍦 ' <Variable> ' 🔷🍨🐚📃🐸
+  🍦 ' <Variable> ' 🔷🍨🐚📃🐸
+  🍦 ' <Variable> ' 🔷🍨🐚📃🐸
 
-  🍦 threadA 🔷💈🆕 🍇
-    🍩🤒📃 ordersA
+  🍦 ' <Variable> ' 🔷💈🆕 🍇
+    🍩🤒📃 ' <Variable> '
   🍉
-  🍦 threadB 🔷💈🆕 🍇
-    🍩🤒📃 ordersB
+  🍦 ' <Variable> ' 🔷💈🆕 🍇
+    🍩🤒📃 ' <Variable> '
   🍉
-  🍦 threadC 🔷💈🆕 🍇
-    🍩🤒📃 ordersC
+  🍦 ' <Variable> ' 🔷💈🆕 🍇
+    🍩🤒📃 ' <Variable> '
   🍉
-  🍦 threadD 🔷💈🆕 🍇
-    🍩🤒📃 ordersD
+  🍦 ' <Variable> ' 🔷💈🆕 🍇
+    🍩🤒📃 ' <Variable> '
   🍉
 
-  🛂 threadA
-  🛂 threadB
-  🛂 threadC
-  🛂 threadD
+  🛂 ' <Variable> '
+  🛂 ' <Variable> '
+  🛂 ' <Variable> '
+  🛂 ' <Variable> '
 
-  🔂 o ordersA 🍇
-    😀 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
-  🔂 o ordersB 🍇
-    😀 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
-  🔂 o ordersC 🍇
-    😀 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
-  🔂 o ordersD 🍇
-    😀 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
 🍉
 '
@@ -2687,11 +2692,11 @@ grammar Emojicode::Grammar
 # tests/compilation/commonType.emojic
 #
 '🐊 💡 🍇
-  🐖 🔦 degree 🚀
+  🐖 🔦 ' <Variable> ' 🚀
 🍉
 
 🐊 📞 🍇
-  🐖 📞 number 🔡
+  🐖 📞 ' <Variable> ' 🔡
 🍉
 
 🕊 📱 🍇
@@ -2700,12 +2705,12 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using cellular network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using cellular network to call 🔤 ' <Variable> ' 🍪
   🍉
 🍉
 
@@ -2715,12 +2720,12 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on spot light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on spot light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using radio network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using radio network to call 🔤 ' <Variable> ' 🍪
   🍉
 🍉
 
@@ -2729,8 +2734,8 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤From a landline, calling 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤From a landline, calling 🔤 ' <Variable> ' 🍪
   🍉
 🍉
 
@@ -2739,31 +2744,31 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on flashlight at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on flashlight at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
 🏁 🍇
-  🍦 stringList 🍨 🔤23456🔤 🔤12345643🔤 🍆
-  🍰 g 🍨🐚🔡
-  🍮 g stringList
+  🍦 ' <Variable> ' 🍨 🔤23456🔤 🔤12345643🔤 🍆
+  🍰 ' <Variable> ' 🍨🐚🔡
+  🍮 ' <Variable> ' ' <Variable> '
 
-  🍦 mobilePhoneList 🍨 🔷📱🆕 🔷📱🆕 🍆
-  🍰 l 🍨🐚📱
-  🍮 l mobilePhoneList
+  🍦 ' <Variable> ' 🍨 🔷📱🆕 🔷📱🆕 🍆
+  🍰 ' <Variable> ' 🍨🐚📱
+  🍮 ' <Variable> ' ' <Variable> '
 
-  🍦 phonableList 🍨 🔷📱🆕 🔷📱🆕 🔷☎️ 🆕 🍆
-  🍰 a 🍨🐚📞
-  🍮 a phonableList
+  🍦 ' <Variable> ' 🍨 🔷📱🆕 🔷📱🆕 🔷☎️ 🆕 🍆
+  🍰 ' <Variable> ' 🍨🐚📞
+  🍮 ' <Variable> ' ' <Variable> '
 
-  🍦 flashlightableList 🍨 🔷📱🆕 🔷🔦🆕 🍆
-  🍰 b 🍨🐚💡
-  🍮 b flashlightableList
+  🍦 ' <Variable> ' 🍨 🔷📱🆕 🔷🔦🆕 🍆
+  🍰 ' <Variable> ' 🍨🐚💡
+  🍮 ' <Variable> ' ' <Variable> '
 
-  🍦 flashlightAndPhonableableList 🍨 🔷📱🆕 🔷🚁🆕 🍆
-  🍰 q 🍨🐚🍱💡📞🍱
-  🍮 q flashlightAndPhonableableList
+  🍦 ' <Variable> ' 🍨 🔷📱🆕 🔷🚁🆕 🍆
+  🍰 ' <Variable> ' 🍨🐚🍱💡📞🍱
+  🍮 ' <Variable> ' ' <Variable> '
 
   😀 🔤everything seems fine🔤
 🍉
@@ -2772,57 +2777,57 @@ grammar Emojicode::Grammar
 # tests/compilation/assignmentByCallInstanceVariable.emojic
 #
 '🐇 ⏲ 🍇
-  🍰 days 🚂
+  🍰 ' <Variable> ' 🚂
 
   🐈 🆕 🍇
-    🍮 days ' <Number> '
+    🍮 ' <Variable> ' ' <Number> '
   🍉
 
   🐖 📆 🍇
-    🍮➕ days ' <Number> '
+    🍮➕ ' <Variable> ' ' <Number> '
   🍉
 
   🐖 📈 🍇
-    🍮➕ days ' <Number> '
+    🍮➕ ' <Variable> ' ' <Number> '
   🍉
 
   🐖 😀 🍇
-    😀 🔡 days ' <Number> '
+    😀 🔡 ' <Variable> ' ' <Number> '
   🍉
 🍉
 
 🐇 📃 🍇
-  🍰 text 🔡
+  🍰 ' <Variable> ' 🔡
 
   🐈 🆕 🍇
-    🍮 text 🔤1234🔤
+    🍮 ' <Variable> ' 🔤1234🔤
   🍉
 
   🐖 🖋 🍇
-    🍮📝 text 🔟5
+    🍮📝 ' <Variable> ' 🔟5
   🍉
 
   🐖 😀 🍇
-    😀 text
+    😀 ' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 stopwatch 🔷⏲🆕
-  📆 stopwatch
-  📈 stopwatch
-  😀 stopwatch
+  🍦 ' <Variable> ' 🔷⏲🆕
+  📆 ' <Variable> '
+  📈 ' <Variable> '
+  😀 ' <Variable> '
 
-  🍦 doc 🔷📃🆕
-  🖋 doc
-  😀 doc
+  🍦 ' <Variable> ' 🔷📃🆕
+  🖋 ' <Variable> '
+  😀 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/assignmentByCallProtocol.emojic
 #
-'🐊 ➕🐚T⚪️ 🍇
-  🐖 ➕ n T ➡️ T
+'🐊 ➕🐚' <Variable> '⚪️ 🍇
+  🐖 ➕ ' <Variable> ' ' <Variable> ' ➡️ ' <Variable> '
 🍉
 
 🐋 🚂 🍇
@@ -2830,25 +2835,25 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍰 a ➕🐚🚂
-  🍮 a ' <Number> '
+  🍰 ' <Variable> ' ➕🐚🚂
+  🍮 ' <Variable> ' ' <Number> '
 
-  🍮➕ a ' <Number> '
-  🍮➕ a ' <Number> '
+  🍮➕ ' <Variable> ' ' <Number> '
+  🍮➕ ' <Variable> ' ' <Number> '
 
-  🍦 integer 🍺🔲 a 🚂
-  😀 🔡 integer ' <Number> '
+  🍦 ' <Variable> ' 🍺🔲 ' <Variable> ' 🚂
+  😀 🔡 ' <Variable> ' ' <Number> '
 🍉
 '
 |
 # tests/compilation/protocolValueType.emojic
 #
 '🐊 💡 🍇
-  🐖 🔦 degree 🚀
+  🐖 🔦 ' <Variable> ' 🚀
 🍉
 
 🐊 📞 🍇
-  🐖 📞 number 🔡
+  🐖 📞 ' <Variable> ' 🔡
   🐖 🔙 ➡️ 🔡
 🍉
 
@@ -2862,12 +2867,12 @@ grammar Emojicode::Grammar
     😀 🔤This method is never called🔤
   🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on camera flash light at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤Using cellular network to call 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤Using cellular network to call 🔤 ' <Variable> ' 🍪
   🍉
 
   🐖 🔙➡️ 🔡 🍇
@@ -2880,8 +2885,8 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 📞 number 🔡 🍇
-    😀 🍪 🔤From a landline, calling 🔤 number 🍪
+  🐖 📞 ' <Variable> ' 🔡 🍇
+    😀 🍪 🔤From a landline, calling 🔤 ' <Variable> ' 🍪
   🍉
 
   🐖 🔙➡️ 🔡 🍇
@@ -2894,27 +2899,27 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 🔦 degree 🚀 🍇
-    😀 🍪 🔤Turning on flashlight at 🔤 🔡 degree ' <Number> ' 🍪
+  🐖 🔦 ' <Variable> ' 🚀 🍇
+    😀 🍪 🔤Turning on flashlight at 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
 🐇 🥊 🍇
-  🐇🐖 💡 lightEmitting 💡 🍇
-    🔦 lightEmitting ' <Number> '
+  🐇🐖 💡 ' <Variable> ' 💡 🍇
+    🔦 ' <Variable> ' ' <Number> '
   🍉
 
-  🐇🐖 📞 phoneCapabilities 📞 🍇
-    📞 phoneCapabilities 🔤2929294757🔤
-    😀 🔙phoneCapabilities
+  🐇🐖 📞 ' <Variable> ' 📞 🍇
+    📞 ' <Variable> ' 🔤2929294757🔤
+    😀 🔙' <Variable> '
   🍉
 🍉
 
 🏁 🍇
-  🍦 iphone 🔷📱🆕
+  🍦 ' <Variable> ' 🔷📱🆕
 
-  🍩💡🥊 iphone
-  🍩📞🥊 iphone
+  🍩💡🥊 ' <Variable> '
+  🍩📞🥊 ' <Variable> '
   🍩📞🥊 🔷☎️🆕
   🍩💡🥊 🔷🔦🆕
 🍉
@@ -2923,41 +2928,41 @@ grammar Emojicode::Grammar
 # tests/compilation/assignmentByCall.emojic
 #
 '🏁 🍇
-  🍮 a ' <Number> '
+  🍮 ' <Variable> ' ' <Number> '
 
-  🍮➕ a ' <Number> '
-  😀 🔡 a ' <Number> '
+  🍮➕ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮➕ a ' <Number> '
-  😀 🔡 a ' <Number> '
+  🍮➕ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮➖ a ' <Number> '
-  😀 🔡 a ' <Number> '
+  🍮➖ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮➖ a ' <Number> '
-  😀 🔡 a ' <Number> '
+  🍮➖ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮 b ' <Number> '
+  🍮 ' <Variable> ' ' <Number> '
 
-  🍮✖️ b ' <Number> '
-  😀 🔡 b ' <Number> '
+  🍮✖️ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮➗ b ' <Number> '
-  😀 🔡 b ' <Number> '
+  🍮➗ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮👈 b ' <Number> '
-  😀 🔡 b ' <Number> '
+  🍮👈 ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮 ➕ b ' <Number> '
-  😀 🔡 b ' <Number> '
+  🍮 ➕ ' <Variable> ' ' <Number> '
+  😀 🔡 ' <Variable> ' ' <Number> '
 
-  🍮 c 🔤test🔤
+  🍮 ' <Variable> ' 🔤test🔤
 
-	🍮📝 c 🔟1
-	😀 c
+	🍮📝 ' <Variable> ' 🔟1
+	😀 ' <Variable> '
 
-	🍮📝 c 🔟2
-	😀 c
+	🍮📝 ' <Variable> ' 🔟2
+	😀 ' <Variable> '
 🍉
 '
 |
@@ -2968,14 +2973,14 @@ grammar Emojicode::Grammar
   🔘🥞
   🔘🥐
 
-  🐇🐖 🔡 human 🔡 ➡️ ⏰ 🍇
-    🍊 😛 human 🔤croissant🔤 🍇
+  🐇🐖 🔡 ' <Variable> ' 🔡 ➡️ ⏰ 🍇
+    🍊 😛 ' <Variable> ' 🔤croissant🔤 🍇
       🍎 🔷⏰🥐
     🍉
-    🍊 😛 human 🔤pancakes🔤 🍇
+    🍊 😛 ' <Variable> ' 🔤pancakes🔤 🍇
       🍎 🔷⏰🥞
     🍉
-    🍊 😛 human 🔤bacon🔤 🍇
+    🍊 😛 ' <Variable> ' 🔤bacon🔤 🍇
       🍎 🔷⏰🥓
     🍉
     🍎 🔷⏰🥓 👴 Default to bacon
@@ -2996,22 +3001,22 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-	🍦 you 🍩🔡⏰ 🔤pancakes🔤
-  😀 🍪 🔤Your choice of breakfast is 🔤 🔡you 🍪
+	🍦 ' <Variable> ' 🍩🔡⏰ 🔤pancakes🔤
+  😀 🍪 🔤Your choice of breakfast is 🔤 🔡' <Variable> ' 🍪
 🍉
 '
 |
 # tests/compilation/variableInitAndScoping.emojic
 #
 '🏁 🍇
-  🔂 i ⏩ ' <Number> ' ' <Number> ' 🍇
-    😀 🍪🔤i=🔤 🔡i ' <Number> '🍪
-    🍰 a 🍬🔡
-    🔂 b 🍨 🔤0🔤 🔤1🔤 🔤2🔤 🍆 🍇
-      🍊 ❎☁️a 🍇
-        😀 🍺a
+  🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
+    😀 🍪🔤i=🔤 🔡' <Variable> ' ' <Number> '🍪
+    🍰 ' <Variable> ' 🍬🔡
+    🔂 ' <Variable> ' 🍨 🔤0🔤 🔤1🔤 🔤2🔤 🍆 🍇
+      🍊 ❎☁️' <Variable> ' 🍇
+        😀 🍺' <Variable> '
       🍉
-      🍮 a b
+      🍮 ' <Variable> ' ' <Variable> '
     🍉
   🍉
 🍉
@@ -3027,76 +3032,76 @@ grammar Emojicode::Grammar
 # tests/compilation/gcStressTest2.emojic
 #
 '🕊 🍔 🍇
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Burger name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Burger name: 🔤 ' <Variable> ' 🍪
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 🍉
 
 🕊 🍾 🍇
-  🍰 hotness 🚀
-  🍰 flavor 🔡
-  🍰 amount 🚂
+  🍰 ' <Variable> ' 🚀
+  🍰 ' <Variable> ' 🔡
+  🍰 ' <Variable> ' 🚂
 
-  🐈 🆕 🍼 hotness 🚀 🍼 flavor 🔡 🍼 amount 🚂 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🚀 🍼 ' <Variable> ' 🔡 🍼 ' <Variable> ' 🚂 🍇
   🍉
 
   🐖 😀 🍇
-    😀 🍪 🔤Sauce 🔤 flavor 🔤 🔤 🔡 amount ' <Number> ' 🔤ml Hot: 🔤 🔡 hotness ' <Number> ' 🍪
+    😀 🍪 🔤Sauce 🔤 ' <Variable> ' 🔤 🔤 🔡 ' <Variable> ' ' <Number> ' 🔤ml Hot: 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 🍉
 
 🐇 📃 🍇
-  🍰 burger 🍔
-  🍰 drink 🍬🔡
-  🍰 sauce 🍬🍾
+  🍰 ' <Variable> ' 🍔
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍬🍾
 
-  🐈 🆕 🍼 burger 🍔 🍼 drink 🍬🔡 🍼 sauce 🍬🍾 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍔 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍬🍾 🍇
   🍉
 
   🐖 😀 🍇
-    😀 burger
-    🍊🍦 drink drink 🍇
-      😀 🍪 🔤Drink: 🔤 drink 🍪
+    😀 ' <Variable> '
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Drink: 🔤 ' <Variable> ' 🍪
     🍉
-    🍊🍦 sauce sauce 🍇
-      😀 sauce
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 ' <Variable> '
     🍉
   🍉
 🍉
 
 🏁 🍇
-  🍦 orders 🔷🍨🐚📃🐸
+  🍦 ' <Variable> ' 🔷🍨🐚📃🐸
 
-  🔂 i ⏩ ' <Number> ' ' <Number> ' 🍇
-    🍦 a 🔷📃🆕 🔷🍔🆕 🍪🔤Double Bacon🔤 🔡 i ' <Number> '🍪 🍨 🔤Bacon🔤 🔤Tomato🔤 🍆 ⚡️  🔷🍾🆕 ' <Number> ' 🍪🔤barbecue🔤 🔡 i ' <Number> '🍪 ' <Number> '
-    🍦 b 🔷📃🆕 🔷🍔🆕 🍪🔤Triple Burger🔤 🔡 i ' <Number> '🍪  🍨 🔤Onion🔤 🔤Salad🔤 🔤Tomato🔤 🍆 🔤Coke🔤 🔷🍾🆕 ' <Number> ' 🍪🔤chilli🔤 🔡 i ' <Number> '🍪 ' <Number> '
-    🍦 c 🔷📃🆕 🔷🍔🆕 🍪🔤Cheeseburger🔤 🔡 i ' <Number> '🍪  🍨 🔤Cheese🔤 🍆 🔤Lemonade🔤 ⚡️
-    🍦 d 🔷📃🆕 🔷🍔🆕 🍪🔤Standard Burger🔤 🔡 i ' <Number> '🍪  🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆 🔤Coke🔤 ⚡️
-    🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-      🐻 orders a
+  🔂 ' <Variable> ' ⏩ ' <Number> ' ' <Number> ' 🍇
+    🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Double Bacon🔤 🔡 ' <Variable> ' ' <Number> '🍪 🍨 🔤Bacon🔤 🔤Tomato🔤 🍆 ⚡️  🔷🍾🆕 ' <Number> ' 🍪🔤barbecue🔤 🔡 ' <Variable> ' ' <Number> '🍪 ' <Number> '
+    🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Triple Burger🔤 🔡 ' <Variable> ' ' <Number> '🍪  🍨 🔤Onion🔤 🔤Salad🔤 🔤Tomato🔤 🍆 🔤Coke🔤 🔷🍾🆕 ' <Number> ' 🍪🔤chilli🔤 🔡 ' <Variable> ' ' <Number> '🍪 ' <Number> '
+    🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Cheeseburger🔤 🔡 ' <Variable> ' ' <Number> '🍪  🍨 🔤Cheese🔤 🍆 🔤Lemonade🔤 ⚡️
+    🍦 ' <Variable> ' 🔷📃🆕 🔷🍔🆕 🍪🔤Standard Burger🔤 🔡 ' <Variable> ' ' <Number> '🍪  🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆 🔤Coke🔤 ⚡️
+    🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🐻 ' <Variable> ' ' <Variable> '
     🍉
-    🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-      🐻 orders b
+    🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🐻 ' <Variable> ' ' <Variable> '
     🍉
-    🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-      🐻 orders c
+    🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🐻 ' <Variable> ' ' <Variable> '
     🍉
-    🍊 😛 🚮 i ' <Number> ' ' <Number> ' 🍇
-      🐻 orders d
+    🍊 😛 🚮 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
+      🐻 ' <Variable> ' ' <Variable> '
     🍉
   🍉
 
-  🔂 o orders 🍇
-    😀 o
+  🔂 ' <Variable> ' ' <Variable> ' 🍇
+    😀 ' <Variable> '
   🍉
 🍉
 '
@@ -3104,12 +3109,12 @@ grammar Emojicode::Grammar
 # tests/compilation/classInheritance.emojic
 #
 '🐇 🐟 🍇
-  🍰 name 🔡
+  🍰 ' <Variable> ' 🔡
 
-  🐈 🆕 🍼 name 🔡 🍇🍉
+  🐈 🆕 🍼 ' <Variable> ' 🔡 🍇🍉
 
   🐖 🙋 🍇
-    😀 name
+    😀 ' <Variable> '
   🍉
 🍉
 
@@ -3134,39 +3139,39 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍦 a 🔷🐟🆕 🔤Shawn🔤
-  🍦 c 🔷🐡🆕
-  🍦 u 🔷🌕🆕
+  🍦 ' <Variable> ' 🔷🐟🆕 🔤Shawn🔤
+  🍦 ' <Variable> ' 🔷🐡🆕
+  🍦 ' <Variable> ' 🔷🌕🆕
 
-  🙋 a
-  🙋 c
-  🥛 c
-  🙋 u
-  🥛 u
-  💎 u
-  🥞 u
+  🙋 ' <Variable> '
+  🙋 ' <Variable> '
+  🥛 ' <Variable> '
+  🙋 ' <Variable> '
+  🥛 ' <Variable> '
+  💎 ' <Variable> '
+  🥞 ' <Variable> '
 🍉
 '
 |
 # tests/compilation/protocolGenericLayerClass.emojic
 #
-'🐊 📠🐚A⚪️ 🍇
-  🐖 ⏱ a A
-  🐖 🚚 ➡️ A
+'🐊 📠🐚' <Variable> '⚪️ 🍇
+  🐖 ⏱ ' <Variable> ' ' <Variable> '
+  🐖 🚚 ➡️ ' <Variable> '
 🍉
 
 🕊 🍔 🍇
-  🍰 name 🍬🔡
-  🍰 ingredients 🍨🐚🔡
+  🍰 ' <Variable> ' 🍬🔡
+  🍰 ' <Variable> ' 🍨🐚🔡
 
-  🐈 🆕 🍼 name 🍬🔡 🍼 ingredients 🍨🐚🔡 🍇
+  🐈 🆕 🍼 ' <Variable> ' 🍬🔡 🍼 ' <Variable> ' 🍨🐚🔡 🍇
   🍉
 
   🐖 😀 🍇
-    🍊🍦 name name 🍇
-      😀 🍪 🔤Burger name: 🔤 name 🍪
+    🍊🍦 ' <Variable> ' ' <Variable> ' 🍇
+      😀 🍪 🔤Burger name: 🔤 ' <Variable> ' 🍪
     🍉
-    😀 🔷🔡🍨 ingredients 🔤, 🔤
+    😀 🔷🔡🍨 ' <Variable> ' 🔤, 🔤
   🍉
 🍉
 
@@ -3175,8 +3180,8 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 ⏱ roomNumber 🚂 🍇
-    😀 🍪 🔤Requested 🔤 🔡 roomNumber ' <Number> ' 🍪
+  🐖 ⏱ ' <Variable> ' 🚂 🍇
+    😀 🍪 🔤Requested 🔤 🔡 ' <Variable> ' ' <Number> ' 🍪
   🍉
 
   🐖 🚚 ➡️ 🚂 🍇
@@ -3189,9 +3194,9 @@ grammar Emojicode::Grammar
 
   🐈 🆕 🍇🍉
 
-  🐖 ⏱ burgerType 🍔 🍇
+  🐖 ⏱ ' <Variable> ' 🍔 🍇
     😀 🍪 🔤Requested 🔤 🍪
-    😀 burgerType
+    😀 ' <Variable> '
   🍉
 
   🐖 🚚 ➡️ 🍔 🍇
@@ -3200,17 +3205,17 @@ grammar Emojicode::Grammar
 🍉
 
 🏁 🍇
-  🍰 a 📠🐚🚂
-  🍮 a 🔷🏨🆕
+  🍰 ' <Variable> ' 📠🐚🚂
+  🍮 ' <Variable> ' 🔷🏨🆕
 
-  ⏱ a ' <Number> '
-  😀🔡 🚚 a ' <Number> '
+  ⏱ ' <Variable> ' ' <Number> '
+  😀🔡 🚚 ' <Variable> ' ' <Number> '
 
-  🍰 b 📠🐚🍔
-  🍮 b 🔷🏣🆕
+  🍰 ' <Variable> ' 📠🐚🍔
+  🍮 ' <Variable> ' 🔷🏣🆕
 
-  ⏱ b 🔷🍔🆕 🔤Standard Burger🔤 🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆
-  😀 🚚 b
+  ⏱ ' <Variable> ' 🔷🍔🆕 🔤Standard Burger🔤 🍨 🔤Egg🔤 🔤Salad🔤 🔤Bacon🔤 🔤Cucumber🔤 🍆
+  😀 🚚 ' <Variable> '
 🍉
 '
 		}
