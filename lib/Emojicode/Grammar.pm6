@@ -48,11 +48,17 @@ grammar Emojicode::Grammar
 			| <String>
 			| <List>
 			| <Variable>
+			| <Number>
 			}
 
 		token Print-Statement
 			{
 			| '😀' \s+ <Expression>
+			}
+
+		token Return-Statement
+			{
+			| '🍎' \s+ <Expression>
 			}
 
 		token Include
@@ -97,7 +103,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🔙➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -117,7 +123,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🔙➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -321,7 +327,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🚚 ➡️ 🚂 🍇
-    🍎 ' <Number> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -422,18 +428,18 @@ grammar Emojicode::Grammar
   🐇🐖 🙋 ' <Variable> ' 🔡 ➡️ 🍇🚂➡️🔡🍉 🍇
     🍎 🍇 ' <Variable> ' 🚂 ➡️ 🔡
       🍊 😛 ' <Variable> ' ' <Number> ' 🍇
-        🍎 ' <List> '
+        ' <Return-Statement> '
       🍉
-      🍎 ' <List> '
+      ' <Return-Statement> '
     🍉
   🍉
 
   ' <Comment> '
   🐇🐖 👌🏾 ' <Variable> ' 🔡 ' <Variable> ' 🚂 ' <Variable> ' 🔡 ' <Variable> ' 🚀 ➡️ 🍇➡️🔡🍉 🍇
     🍊 ⬅️ ' <Variable> ' ' <Number> ' 🍇
-      🍎 🍇 ➡️🔡 🍎 ' <List> ' 🍉
+      🍎 🍇 ➡️🔡 ' <Return-Statement> ' 🍉
     🍉
-		🍎 🍇 ➡️🔡 🍎 ' <List> ' 🍉
+		🍎 🍇 ➡️🔡 ' <Return-Statement> ' 🍉
   🍉
 🍉
 
@@ -480,7 +486,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🤣 ➡️ 🔡 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -498,7 +504,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🌼 ➡️ 🌼 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -509,11 +515,11 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' 🌼 🍼 ' <Variable> ' 🌼 🍇🍉
 
   🐖 🌗 ➡️ 🌼 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 
   🐖 🌓 ➡️ 🌼 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -565,7 +571,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🎉 ➡️  ' <Variable> ' 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -584,12 +590,12 @@ grammar Emojicode::Grammar
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷🏜🔋 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷🏜🍟 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -599,7 +605,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐇🐖 🙋 ➡️ 🚨🏜🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 
   🐇🐖 🙅‍♂️ ➡️ 🚨🏜⚪️ 🍇
@@ -607,7 +613,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐇🐖 🙋‍♂️ ➡️ 🚨🏜⚪️ 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -789,7 +795,7 @@ grammar Emojicode::Grammar
   🐖 🐷 ➡️ 🔡 🍇
     🍦 ' <Variable> ' 🔪 🐕 ' <Number> ' ' <Number> '
     🍦 ' <Variable> ' 🔪 🐕 ' <Number> ' 🐔 🐕
-    🍎 ' <List> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -816,15 +822,15 @@ grammar Emojicode::Grammar
 
   🐖 🇨🇭 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷🍴🍫 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷🍴🍭 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷🍴🥐 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -884,7 +890,7 @@ grammar Emojicode::Grammar
 	🍉
 
 	🐖 🦀 ' <Variable> ' 🔡 ➡️ ' <Variable> ' 🍇
-		🍎 ' <Number> '
+		' <Return-Statement> '
 	🍉
 🍉
 
@@ -1075,7 +1081,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 💶 ➡️ 🚂 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -1122,7 +1128,7 @@ grammar Emojicode::Grammar
 
   🐖 💳 ➡️ 🍇➡️🔡🍉 🍇
     🍎 🍇 ➡️ 🔡
-      🍎 ' <Variable> '
+      ' <Return-Statement> '
     🍉
   🍉
 🍉
@@ -1191,7 +1197,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🔙➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -1205,7 +1211,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🔙➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -1260,7 +1266,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🥔 ➡️ ' <Variable> ' 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -1271,11 +1277,11 @@ grammar Emojicode::Grammar
   🐈 🆕 🍼 ' <Variable> ' ' <Variable> ' 🍼 ' <Variable> ' ' <Variable> ' 🍇🍉
 
   🐖 👈 ➡️ ' <Variable> ' 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 
   🐖 👉 ➡️ ' <Variable> ' 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -1511,7 +1517,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 💱 ➡️ 🚂 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 
   🐖 🎶 ' <Variable> ' 🌗 🍇
@@ -1558,7 +1564,7 @@ grammar Emojicode::Grammar
 	🍉
 
 	🐖 🦀 ' <Variable> ' 🔡 ➡️ ' <Variable> ' 🍇
-		🍎 ' <Number> '
+		' <Return-Statement> '
 	🍉
 🍉
 
@@ -1696,7 +1702,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐇🐖 🙋 ➡️ 🚨🏜🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 
   🐇🐖 🙅‍♂️ ➡️ 🚨🏜⚪️ 🍇
@@ -1704,7 +1710,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐇🐖 🙋‍♂️ ➡️ 🚨🏜⚪️ 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -1820,7 +1826,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐇 🐖 🐤 ➡️  ⚪️ 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 
   🐇 🐖 🐦 ➡️  ⚪️ 🍇
@@ -2004,15 +2010,15 @@ grammar Emojicode::Grammar
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷⏰🥐 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷⏰🥞 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷⏰🥓 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2084,7 +2090,7 @@ grammar Emojicode::Grammar
   🔑 🐈 🆕 🍇 🐐 🆕 🍉
 
   🔒 🐖 🙋 a 🚂 ➡️ 🚂 🍇
-    🍎 ' <Number> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2143,7 +2149,7 @@ grammar Emojicode::Grammar
     🔂 i️ ⏩ ➖ 🐔 ' <Variable> ' ' <Number> ' ' <Number> ' 🍇
       🍮 ' <Variable> ' 📝 ' <Variable> ' 🍺🐽 ' <Variable> ' ' <Variable> '
     🍉
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 
   😀 🍭 ' <Variable> ' ' <String> '
@@ -2184,7 +2190,7 @@ grammar Emojicode::Grammar
 
   🐖 💳 ➡️ 🍇➡️🔡🍉 🍇
     🍎 🍇 ➡️ 🔡
-      🍎 ' <Variable> '
+      ' <Return-Statement> '
     🍉
   🍉
 
@@ -2192,7 +2198,7 @@ grammar Emojicode::Grammar
 
 🐇 ⚽️ 🍇
   🐇🐖 🎂 ➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2200,9 +2206,9 @@ grammar Emojicode::Grammar
   🐇🐖 🙋 ' <Variable> ' 🔡 ➡️ 🍇🚂➡️🔡🍉 🍇
     🍎 🍇 ' <Variable> ' 🚂 ➡️ 🔡
       🍊 😛 ' <Variable> ' ' <Number> ' 🍇
-        🍎 ' <List> '
+        ' <Return-Statement> '
       🍉
-      🍎 ' <List> '
+      ' <Return-Statement> '
     🍉
   🍉
 🍉
@@ -2252,7 +2258,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🎉 ➡️  ' <Variable> ' 🍇
-    🍎 ' <Variable> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2303,7 +2309,7 @@ grammar Emojicode::Grammar
 	🍉
 
 	🐖 🏷 ➡️ 🔡 🍇
-		🍎 ' <Variable> '
+		' <Return-Statement> '
 	🍉
 
 	🐖 😛 ' <Variable> ' 🐕 ➡️ 👌 🍇
@@ -2401,15 +2407,15 @@ grammar Emojicode::Grammar
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷⏰🥐 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷⏰🥞 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷⏰🥓 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2489,7 +2495,7 @@ grammar Emojicode::Grammar
 
 🐇 🐟 🍇
   🐇🐖 🙋 ➡️ 🚨🏜🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2928,7 +2934,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🔙➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -2942,7 +2948,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🔙➡️ 🔡 🍇
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -3040,15 +3046,15 @@ grammar Emojicode::Grammar
 
   🐖 🔡 ➡️ 🔡 🍇
     🍊 😛 🐕 🔷⏰🥐 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷⏰🥞 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
     🍊 😛 🐕 🔷⏰🥓 🍇
-      🍎 ' <String> '
+      ' <Return-Statement> '
     🍉
-    🍎 ' <String> '
+    ' <Return-Statement> '
   🍉
 🍉
 
@@ -3237,7 +3243,7 @@ grammar Emojicode::Grammar
   🍉
 
   🐖 🚚 ➡️ 🚂 🍇
-    🍎 ' <Number> '
+    ' <Return-Statement> '
   🍉
 🍉
 
