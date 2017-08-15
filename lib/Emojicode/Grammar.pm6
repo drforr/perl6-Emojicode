@@ -10,7 +10,7 @@ grammar Emojicode::Grammar
 
 		token Variable
 			{
-			| <[ = @ a .. z A .. Z ]> <[ a .. z A .. Z 0 .. 9 ]>*
+			| <[ = @ a .. z A .. Z ]> <[ a .. z A .. Z 0 .. 9 ]>* # XXX Not-unicode
 			}
 
 		token String
@@ -159,6 +159,7 @@ grammar Emojicode::Grammar
 
 		token If
 			{
+			| '🍊' \s+ . \s+ [ <Variable> | <Boolean> ] \s+ <Block>
 			| '🍊' \s+ [ <Variable> | <Boolean> ] \s+ <Block>
 			}
 
@@ -181,6 +182,11 @@ grammar Emojicode::Grammar
 		token DefineType
 			{
 			| '🕊' \s+ . \s+ <Block>
+			}
+
+		token ThreadWait
+			{
+			| '🛂' \s+ <Variable>
 			}
 
 		token TOP
@@ -771,7 +777,7 @@ grammar Emojicode::Grammar
 		🍎 🔷 🐕 🆕
 	🍉
 
-	🔑 ' <Initializer> '
+	' <Initializer> '
 
 🍉
 
@@ -886,7 +892,7 @@ grammar Emojicode::Grammar
   🍉
 
   🔂 ' <Variable> ' ' <Variable> ' 🍇
-    🛂 ' <Variable> '
+    ' <ThreadWait> '
   🍉
 
   😀 🔡 💶 ' <Variable> ' ' <Number> ' ' <Comment> '
@@ -1345,17 +1351,13 @@ grammar Emojicode::Grammar
   🍦 ' <Variable> ' 🍩🙅‍♂️🐟
   🍦 ' <Variable> ' 🍩🙋‍♂️🐟
 
-  🍊 🚥 ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 🚥 ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 🚥 ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 🚥 ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 🍉
 '
 |
@@ -1414,17 +1416,13 @@ grammar Emojicode::Grammar
 
   ' <Assignment-Statement> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
   🍊 ☁️  🍩🐦🥐 ' <Block> '
   ' <Else> '
@@ -1434,17 +1432,13 @@ grammar Emojicode::Grammar
   🍮 ' <Variable> ' 🔷🥐🆕 👍 ' <String> ' ' <Number> '
   ' <Assignment-Statement> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
-  🍊 ☁️ ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
 
   🍊 ☁️  🍩🐤🥐 ' <Block> '
   ' <Else> '
@@ -1695,10 +1689,8 @@ grammar Emojicode::Grammar
   🍦 ' <Variable> ' 🔷🐟🆕
   🍦 ' <Variable> ' 🔷🐟🆒
 
-  🍊 🚥 ' <Variable> ' ' <Block> '
-  ' <Else> '
-  🍊 🚥 ' <Variable> ' ' <Block> '
-  ' <Else> '
+  ' <Conditional> '
+  ' <Conditional> '
 🍉
 '
 |
@@ -2116,10 +2108,10 @@ grammar Emojicode::Grammar
     🍩🤒📃 ' <Variable> '
   🍉
 
-  🛂 ' <Variable> '
-  🛂 ' <Variable> '
-  🛂 ' <Variable> '
-  🛂 ' <Variable> '
+  ' <ThreadWait> '
+  ' <ThreadWait> '
+  ' <ThreadWait> '
+  ' <ThreadWait> '
 
   🔂 ' <Variable> ' ' <Variable> ' ' <Block> '
   🔂 ' <Variable> ' ' <Variable> ' ' <Block> '
