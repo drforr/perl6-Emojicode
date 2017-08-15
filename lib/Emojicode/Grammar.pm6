@@ -189,6 +189,11 @@ grammar Emojicode::Grammar
 			| '🛂' \s+ <Variable>
 			}
 
+		token MainMethod
+			{
+			|	'🏁' \s+ <Block> \s+
+			}
+
 		token TOP
 			{
 # tests/compilation/protocolSubclass.emojic
@@ -288,8 +293,7 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/if.emojic
 #
-'🏁 ' <Block> '
-'
+<MainMethod>
 |
 # tests/compilation/protocolGenericLayerValueType.emojic
 #
@@ -628,8 +632,7 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/hello.emojic
 #
-'🏁 ' <Block> '
-'
+<MainMethod>
 |
 # tests/compilation/piglatin.emojic
 #
@@ -2360,8 +2363,7 @@ grammar Emojicode::Grammar
 |
 # tests/compilation/stringConcat.emojic
 #
-'🏁 ' <Block> '
-'
+<MainMethod>
 |
 # tests/compilation/gcStressTest2.emojic
 #
