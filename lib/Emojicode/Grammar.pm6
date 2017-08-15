@@ -190,8 +190,8 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 📱 🍇
-  🐊 📞
-  🐊 💡
+  ' <Conformance> '
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -207,7 +207,7 @@ grammar Emojicode::Grammar
 🐇 ⌚️  📱 ' <Block> '
 
 🐇 ☎️ 🍇
-  🐊 📞
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -217,7 +217,7 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 🔦 🍇
-  🐊 💡
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -254,7 +254,7 @@ grammar Emojicode::Grammar
 🍉
 
 🕊 🍕 🍇
-  🐊 💷
+  ' <Conformance> '
 
   ' <Declaration-Statement> '
   🍰 ' <Variable> ' 🍨🐚🔡
@@ -1020,8 +1020,8 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 📱 🍇
-  🐊 📞
-  🐊 💡
+  ' <Conformance> '
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -1035,7 +1035,7 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 ☎️ 🍇
-  🐊 📞
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -1045,7 +1045,7 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 🔦 🍇
-  🐊 💡
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -1280,7 +1280,7 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 🌗 🍇
-  🐊 💿
+  ' <Conformance> '
 
   ' <Declaration-Statement> '
 
@@ -1297,7 +1297,7 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 🌵 🍇
-  🐊 💿
+  ' <Conformance> '
 
   ' <Initializer> '
 
@@ -1848,7 +1848,7 @@ grammar Emojicode::Grammar
 🍉
 
 🐇 🐾 🍇
-	🐊 😛
+	' <Conformance> '
 	' <Declaration-Statement> '
 
 	🐈 🆕 @name 🔡 🍇
@@ -1879,7 +1879,7 @@ grammar Emojicode::Grammar
 🍉
 
 🕊 🍔 🍇
-  🐊 💷
+  ' <Conformance> '
 
   ' <Declaration-Statement> '
   🍰 ' <Variable> ' 🍨🐚🔡
@@ -1897,7 +1897,7 @@ grammar Emojicode::Grammar
 🍉
 
 🕊 🍕 🍇
-  🐊 💷
+  ' <Conformance> '
 
   ' <Declaration-Statement> '
   🍰 ' <Variable> ' 🍨🐚🔡
