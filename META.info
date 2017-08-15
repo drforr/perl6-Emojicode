@@ -6,9 +6,7 @@
 		"Test"
 	],
 	"provides"     : {
-		"Emojicode::Actions" : "lib/Emojicode/Actions.pm6"
 		"Emojicode::Grammar" : "lib/Emojicode/Grammar.pm6"
-		"Emojicode"          : "lib/Emojicode.pm6"
 	},
 	"source-url"   : "git://github.com/drforr/perl6-Emojicode.git"
 }

@@ -1,28 +1,18 @@
-# Template::Toolkit [![Build Status](https://secure.travis-ci.org/drforr/perl6-Template-Toolkit.svg?branch=master)](http://travis-ci.org/drforr/perl6-Template-Toolkit)
-Template::Toolkit
+# Emojicode [![Build Status](https://secure.travis-ci.org/drforr/perl6-Emojicode.svg?branch=master)](http://travis-ci.org/drforr/perl6-Emojicode)
+Emojicode
 =======
 
-Drop-in replacement for Template Toolkit.
+Parser for Emojicode
 
-I've got a bunch of TT files that I don't want to have to covert by hand to another template scheme, so here's yet another yak that someone else gets to shave for you.
+It passes (in a manner of speaking) the basic acceptance tests, but is by no means complete.
 
 Installation
 ============
 
-* Using panda (a module management tool bundled with Rakudo Star):
+* Using zef (a module management tool bundled with Rakudo Star):
 
 ```
-    panda update && panda install Template
-```
-
-* Is ufo even still a thing?
-* Using ufo (a project Makefile creation script bundled with Rakudo Star) and make:
-
-```
-    ufo                    
-    make
-    make test
-    make install
+    zef update && zef install Emojicode
 ```
 
 ## Testing
@@ -30,7 +20,7 @@ Installation
 To run tests:
 
 ```
-    prove -e perl6
+    prove -e 'perl6 -Ilib'
 ```
 
 ## Author
